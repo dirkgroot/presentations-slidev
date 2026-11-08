@@ -1,8 +1,9 @@
 # Deck: avisi-theme-example
 
-The Avisi theme playground as a deck (moved out of the theme package, decided 2026-11-08) — the
-visual test bench for [`themes/avisi/`](../../themes/avisi/summary.md), not a real presentation.
-Self-contained under `decks/avisi-theme-example/`: `slides.md` + `public/`. Related:
+The Avisi theme demo deck (moved out of the theme package, decided 2026-11-08; restructured into a
+tidy one-feature-per-slide test bench, decided 2026-11-08) — the visual reference for
+[`themes/avisi/`](../../themes/avisi/summary.md), not a real presentation. Self-contained under
+`decks/avisi-theme-example/`: `slides.md` + `public/`. Related:
 [../../practices.md](../../practices.md), [../../terminology.md](../../terminology.md),
 [../welcome-to-slidev/summary.md](../welcome-to-slidev/summary.md).
 
@@ -10,26 +11,22 @@ Self-contained under `decks/avisi-theme-example/`: `slides.md` + `public/`. Rela
 
 `theme: ../../themes/avisi` — local path **relative to the entry file**; this is the canonical way
 decks consume the local theme (dev-server verified 2026-11-08) · `title: Avisi Theme Demo` ·
-`comark: true` (the `{.avisi-subtitle}` demos need it) · `class: avisi-white-with-footer` (slide 1's
-background — the headmatter doubles as the first slide's frontmatter). No `fonts:` block — the
-theme's `slidev.defaults` (Poppins/Fira Code) apply.
+`author: Dirk Groot` · `comark: true` (the `{.avisi-subtitle}` demo needs it) · `layout: cover` +
+`class: avisi-fancy` — the headmatter doubles as slide 1's frontmatter, and slide 1 **is** the cover,
+so no `layout: default` forcing is needed (removed in the 2026-11-08 restructure). No `fonts:` block
+— the theme's `slidev.defaults` (Poppins/Fira Code) apply.
 
-## Slide inventory (9 slides + 3 `src:` imports)
+## Slide inventory (7 slides, one theme feature-cluster each)
 
-| # | Topic | Feature exercised |
-|---|-------|-------------------|
-| 1 | Migration demo title | `default` layout forced via headmatter `layout: default` (Slidev would give slide 1 `cover` — see terminology), left-aligned; `avisi-white-with-footer` via headmatter `class:` |
-| 2 | Cover with logo | `cover` layout + `avisi-fancy`, deck-owned `public/` logo via root-absolute `<img>` |
-| 3 | Title/subtitle anatomy | `avisi-white-with-footer`, link/list-marker colors, borderless table |
-| 4 | Comark subtitle | `avisi-white-with-footer`, explicit `{.avisi-subtitle}` vs. unclassed `h2` (normal dark-blue heading) |
-| 5 | Fancy background | `avisi-fancy-with-footer`, white text by default (no per-element styles) |
-| 6 | Split slide | `two-cols` + `layoutClass: avisi-half-gray gap-8` |
-| 7 | Code | `avisi-white-with-footer`, Shiki `dark-plus` via the theme's `setup/shiki.ts`, 0.65em `pre` |
-| 8 | Typography ladder | `avisi-white-with-footer`, h4→h3→h2→h1 sizes × `--avisi-font-scale` |
-| 9 | Shared-slides intro | `avisi-white-with-footer`, explains the three `src:` imports |
-
-The imported shared slides each carry their own background: `avisi-logo.md` → `avisi-fancy`,
-`whoami.md` → `avisi-white-with-footer`, `about-avisi.md` → `layoutClass: avisi-white-with-footer`.
+| # | Topic | Frontmatter | Feature exercised |
+|---|-------|-------------|-------------------|
+| 1 | Cover (logo + title) | headmatter: `layout: cover`, `class: avisi-fancy` | `cover` layout, fancy bg, deck-owned white wordmark logo, `.emphasis` title |
+| 2 | Typography ladder | `class: avisi-white-with-footer` | h1→h4 sizes at 2.5/1.6/1.3/1.0em × `--avisi-font-scale`, Poppins |
+| 3 | Subtitle contrast | `class: avisi-white-with-footer` | `## … {.avisi-subtitle}` (bold dark gray) vs. unclassed `h2` (dark blue) |
+| 4 | Lists, links & tables | `class: avisi-white-with-footer` | light-blue links (no underline) + `li::marker`, dark-gray body, borderless table |
+| 5 | Code | `class: avisi-white-with-footer` | fenced `ts` block, Shiki `dark-plus` via the theme's `setup/shiki.ts`, 0.65em `pre` |
+| 6 | Dark background | `class: avisi-fancy-with-footer` | white text by default (zero inline styles), footer logo on dark |
+| 7 | Split | `layout: two-cols`, `layoutClass: avisi-half-gray gap-8` | `two-cols` + half-gray split via `layoutClass`, `gap-8` column gap |
 
 ```mermaid
 flowchart LR
@@ -42,13 +39,20 @@ flowchart LR
 
 - Every slide carries a theme-provided background class (decided 2026-11-08): plain content slides
   use `avisi-white-with-footer` — the theme's only generic light background — while the dark
-  (`avisi-fancy*`) and split (`avisi-half-gray`) classes are demoed on their dedicated slides. A new
-  playground slide must pick one of the four.
-- When a theme feature is added or changed, add/extend a slide here — the playground is the theme's
-  living documentation and its visual test (verify via PDF export, see practices → Verification).
+  (`avisi-fancy*`) and split (`avisi-half-gray`) classes are demoed on their dedicated slides. A
+  new playground slide must pick one of the four.
+- Deck-wide rule: **one feature-cluster per slide, no meta-commentary slides** (decided 2026-11-08,
+  restructure) — the deck demos theme features only; it does not demo the `src:` shared-slides
+  pattern (that lives in [../../shared/summary.md](../../shared/summary.md), which was removed from
+  this deck in the restructure) or migration history. Dev-rationale comments stay in the .lode and
+  theme CSS, not in slide markup.
+- When a theme feature is added or changed, add/extend a slide here and keep the one-feature-per-slide
+  shape — the deck is the theme's living documentation and its visual test (verify via PDF export,
+  see practices → Verification; PDF-export verified after the 2026-11-08 restructure).
 - The cover logo is `<img src="/assets/avisi_logo.png">`, resolved against the **deck's** served
   root: this deck owns `public/assets/avisi_logo.png`; the theme has no `public/` (its `assets/`
   copy is CSS-only, referenced via relative `url(../assets/…)`).
-- Subtitle style = the explicit Comark class only (the `h1 + h2` path was removed) — slide 4
-  demonstrates both the classed and unclassed h2.
+- `layout: cover` always pairs with `class: avisi-fancy` — `avisi_logo.png` is a **white** wordmark.
+- Subtitle style = the explicit Comark class only (the `h1 + h2` path was removed) — slide 3
+  demonstrates the classed subtitle and the unclassed plain `h2` side by side.
 - Run via the dev-server skill: `pnpm exec slidev decks/avisi-theme-example/slides.md`.
