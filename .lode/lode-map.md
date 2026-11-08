@@ -5,9 +5,16 @@ Hierarchical index of the lode. Keep this file accurate when adding/moving files
 - **summary.md** — one-paragraph living snapshot of the project.
 - **terminology.md** — Slidev + project domain terms (term - meaning).
 - **practices.md** — toolchain (pnpm/npm split), commands, deployment, authoring conventions, environment.
+  Per the Lode-vs-skill rule, procedural runbooks live as project skills (skills are referenced by
+  name from the lode):
+  - **Project skill `dev-server`** (`.agents/skills/dev-server/`) — start/verify/stop the Slidev dev
+    server, incl. headless `--remote` mode + sbx port publishing for host-browser preview.
 - **slides/** → replaced by per-deck lode dirs mirroring the repo:
 - **decks/welcome-to-slidev/summary.md** — anatomy of deck #1: global frontmatter, slide inventory,
   file relationships, deck invariants.
+- **themes/** → per-theme lodes mirroring the repo:
+  - **themes/avisi/summary.md** — the Avisi local theme (`themes/avisi/`): package metadata, palette,
+    background classes, layouts, playground, usage invariants, known limitations.
 - **migration/** — Reveal.js → Slidev migration knowledge:
   - **migration/summary.md** — migration effort overview, source-material policy, status, invariants.
   - **migration/reveal-source-repo.md** — architecture, deck inventory, shared components, and Avisi

@@ -31,5 +31,12 @@ Domain language of this project (Slidev terms + project-specific meanings).
 - **AutoAnimate** - Reveal.js feature animating diffs between consecutive slides (→ `v-click` steps or magic-move).
 - **Avisi branding** - visual identity of the source decks: Poppins font, dark blue `#003345` / light blue
   `#1199bb`, footer logo bottom-left, `background.png` fancy background, colored `Emphasis` punctuation
-  in headings.
+  in headings. Now implemented as local theme `slidev-theme-avisi` (see `.lode/themes/avisi/summary.md`).
+- **Local theme path** - headmatter `theme: ./themes/avisi` pointing at an uninstalled theme folder:
+  relative to the deck entry file; `theme: ./` inside a theme package is the theme-playground idiom.
+- **`slidev.defaults`** - defaults a theme declares in its `package.json` (`fonts`, `colorSchema`, …);
+  merged under the deck's frontmatter (user frontmatter > theme defaults > Slidev globals).
+- **Theme playground** - `example.md` inside a theme package (`theme: ./`) exercising the theme;
+  doubles as a visual test deck for the migration.
+- **`--slidev-theme-primary`** - theme color CSS var overridable from deck frontmatter `themeConfig:`.
 - **decktape** - PDF exporter used by the source Reveal decks (→ built-in `slidev export`).

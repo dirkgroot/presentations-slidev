@@ -24,9 +24,12 @@ choice, branding approach, and canvas aspect ratio are still pending decisions
 
 - [x] Source repo analyzed (see [reveal-source-repo.md](reveal-source-repo.md)).
 - [x] Feature mapping drafted (see [feature-mapping.md](feature-mapping.md)).
-- [ ] POC deck chosen → not yet migrated.
-- [ ] Avisi branding recreated in Slidev (deck CSS vs. custom theme — undecided).
-- [ ] Canvas aspect ratio decision (16:9 vs. source's 3:2).
+- [x] Avisi branding recreated in Slidev — as the **local custom theme** `themes/avisi/`
+  (decided 2026-11-08, spec-checked against Slidev theme standards; see
+  [../themes/avisi/summary.md](../themes/avisi/summary.md)).
+- [x] Theme demo / playground: `themes/avisi/example.md` (PDF-export verified 2026-11-08).
+- [ ] First real deck migrated (choice pending; see [../plans/migration-poc.md](../plans/migration-poc.md)).
+- [x] Canvas aspect ratio decision: **16:9** (Slidev default), source 3:2 layouts reflow.
 
 ## Invariants
 
@@ -36,4 +39,5 @@ choice, branding approach, and canvas aspect ratio are still pending decisions
   Slidev they can either be duplicated per deck or extracted later — decide per deck, keep each deck
   self-contained for now.
 - Branding tokens (Poppins, Avisi colors, footer logo, `background.png`) come from the source repo's
-  assets + SCSS; copy the **assets** per deck, recreate the styling as CSS.
+  assets + SCSS: assets were copied into the theme (`themes/avisi/assets/`), styling was recreated as
+  CSS ([../themes/avisi/summary.md](../themes/avisi/summary.md)).

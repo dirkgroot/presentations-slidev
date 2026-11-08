@@ -13,7 +13,7 @@ maps to Slidev, with concrete before (JSX) / after (markdown) examples. Related:
 | `<section>` JSX slide | `---`-separated slide + frontmatter | Global frontmatter holds deck-wide config |
 | `className="fragment"` | `v-click` / `v-after` | Wrap the element; lists can use `<li v-click>` |
 | Reveal **AutoAnimate** between slides | `v-click` steps (elements) / **magic-move** (code) | AutoAnimate diffs JSX across slides; Slidev equivalent is click-stepping within one slide |
-| `data-background={Backgrounds.X}` | per-slide `class:` + deck `styles.css` | Recreate the four backgrounds as CSS classes, see below |
+| `data-background={Backgrounds.X}` | per-slide `class:` `avisi-*` background classes | Ported into the theme, see below |
 | highlight.js `Code` w/ `data-line-numbers` | fenced code block, `{lineNumbers}` via frontmatter `highlight` | Shiki replaces highlight.js; line highlighting via `{1|3-4}` syntax |
 | `MermaidDiagram` component | native mermaid block: ```` ```mermaid ```` | No wrapper component needed |
 | RevealMath plugin | KaTeX `$…$` / `$$…$$` | Built in |
@@ -23,6 +23,13 @@ maps to Slidev, with concrete before (JSX) / after (markdown) examples. Related:
 | Reveal notes plugin | presenter notes = last comment block per slide | `[click]` markers sync to clicks |
 | decktape PDF export | `slidev export` (built-in PDF/PNG/PPTX) | No window.Reveal hack needed |
 | `scroll` route variant | Slidev has no scroll view — drop | Not needed for Slidev presenter flow |
+
+> **Realized in `themes/avisi/`** — see [../themes/avisi/summary.md](../themes/avisi/summary.md):
+> fonts via `slidev.defaults` (Poppins/Fira Code, weights 400/600), palette + typography +
+> `.emphasis` in `styles/layout.css`, highlighter `dark-plus` (ir-black port pending), the four
+> background classes `avisi-fancy` / `avisi-fancy-with-footer` / `avisi-white-with-footer` /
+> `avisi-half-gray` in `styles/backgrounds.css`. On dark backgrounds text is colored white
+> manually (`style="color: white"`), as the source decks did.
 
 ## Example: fragments
 
@@ -52,26 +59,17 @@ maps to Slidev, with concrete before (JSX) / after (markdown) examples. Related:
 # De uitdaging<span class="emphasis">.</span>
 ```
 
-Deck `styles.css` defines `.emphasis { color: #1199bb }` (and the `.title`-equivalent size) —
-or the signature is captured once in a future custom theme.
-
-## Example: backgrounds
-
-The four `Backgrounds` enum values become slide `class`es in deck `styles.css`:
-
-- `FancyBackground` → `.fancy` (background.png cover)
-- `FancyWithFooter` → `.fancy` + Avisi logo `::after` (bottom-left logo is deck-global CSS, not per-slide)
-- `WhiteWithFooter` → default background + global footer logo
-- `RightHalfGrayWithFooter` → `.half-gray` (linear-gradient right half `#eee`)
-
-The footer logo + Poppins + colors are deck-global: one `styles.css` block per deck (see pending
-decision in [../plans/migration-poc.md](../plans/migration-poc.md)).
+The Emphasis signature and `.title` sizing live once in the theme
+([../themes/avisi/summary.md](../themes/avisi/summary.md)): `.emphasis { color: #1199bb }` under
+`.slidev-layout` in the theme's `styles/layout.css`. Footer logo + Poppins + colors are theme-global
+— implemented in `themes/avisi/` (see pending-decisions resolution in
+[../plans/migration-poc.md](../plans/migration-poc.md)).
 
 ## Canvas
 
-Source decks are authored at **1920×1280 (3:2)**. Slidev defaults to a 16:9 canvas; the source
-layout must either be reflowed to 16:9 or preserved via `canvasWidth: 1920` + 3:2 aspect —
-pending decision in [../plans/migration-poc.md](../plans/migration-poc.md).
+Source decks are authored at **1920×1280 (3:2)**. Slidev decks use the default **16:9** canvas
+(decided 2026-11-08, see [../plans/migration-poc.md](../plans/migration-poc.md)); source slide
+layouts get reflowed when migrated.
 
 ## Invariants / gotchas
 
