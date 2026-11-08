@@ -104,6 +104,12 @@
 
 ## Authoring conventions
 
+- **Source-code comments** (decided 2026-11-08, cleaned across `themes/avisi/`): comments only when
+  there is a real reason, and only explaining **why**, never the *what* — the code itself is the
+  what. Design rationale, port provenance ("was `settings.scss`"), and non-obvious mechanics
+  (cascade-order overrides, selector gotchas) live in the **lode**, not in source comments —
+  consult the lode instead of re-documenting it there. No comment merely to name the source
+  variable/class a port came from.
 - Markdown files: wrap prose at **120 characters max** per line. Code blocks and tables are exempt (tables
   are single-line by definition; breaking code breaks it). Run `pnpm lint:md` to check — config lives in
   `.markdownlint.json` (MD013 with `code_blocks: false`, `tables: false`) and `.markdownlint-cli2.jsonc`

@@ -1,16 +1,8 @@
-/* Avisi theme — slide backgrounds.
- * Faithful port of src/components/Backgrounds.tsx (the `Backgrounds` enum):
- * the Avisi footer logo is drawn as a CSS background layer, so slides never
- * need footer markup. Apply per-slide via frontmatter `class: avisi-fancy` etc.
- */
-
 .slidev-layout {
-  /* Backgrounds.FancyBackground — background.png, cover. */
   &.avisi-fancy {
     background: url(../assets/background.png) 0 0 / cover no-repeat;
   }
 
-  /* Backgrounds.FancyWithFooter — logo bottom-left + fancy. */
   &.avisi-fancy-with-footer {
     background:
       url(../assets/avisi_logo.png)
@@ -20,8 +12,6 @@
       url(../assets/background.png) 0 0 / cover no-repeat;
   }
 
-  /* Backgrounds.WhiteWithFooter — logo + opaque background-color above the
-   * footer strip (fancy shows through there, exactly as in the source). */
   &.avisi-white-with-footer {
     background:
       url(../assets/avisi_logo.png)
@@ -38,8 +28,6 @@
       url(../assets/background.png) 0 0 / cover no-repeat;
   }
 
-  /* Backgrounds.RightHalfGrayWithFooter — right half #eee above the footer
-   * strip, composited over white-with-footer. */
   &.avisi-half-gray {
     background:
       linear-gradient(
@@ -64,12 +52,6 @@
       url(../assets/background.png) 0 0 / cover no-repeat;
   }
 
-  /* Dark backgrounds default to white text — slides carry no per-element
-   * style attributes. (The source decks set style={{color: "white"}} on every
-   * heading/paragraph; the theme bakes that in here.) The root color covers
-   * paragraphs/list items; the explicit selectors re-white the heading and
-   * subtitle rules from typography.css. Links, list markers and .emphasis keep
-   * the light-blue accent, which stays legible on dark. */
   &.avisi-fancy,
   &.avisi-fancy-with-footer {
     color: white;
