@@ -10,15 +10,17 @@ Start the Slidev dev server for a deck or theme playground.
 - Node via mise: always invoke commands through `bash -l -c "mise exec -- <cmd>"`.
 - pnpm workspace at the repo root (`/Users/dirgroot/proj/personal/presentations-slidev`).
 
-## Step 1: Pick the entry file
+## Step 1: Pick the deck to serve
+
+Unless the user's request already names the deck, ask which one to serve — never guess:
+
+1. Enumerate servable decks: every `decks/<name>/` directory that contains a `slides.md`
+   (`ls decks/`; this includes the Avisi theme playground `decks/avisi-theme-example/`).
+2. Present them as a single-choice list with the `question` tool: one option per deck,
+   label = deck name, description = its entry file path.
 
 The entry is the deck's markdown file, NOT a directory — slidev 53.1.0 fails with `EISDIR`
-on the directory form:
-
-- A real deck: `decks/<name>/slides.md`
-- The Avisi theme playground: `decks/avisi-theme-example/slides.md`
-
-If unsure which decks exist, `ls decks/` and check each deck directory's `slides.md`.
+on the directory form: `decks/<name>/slides.md`.
 
 ## Step 2: Start the server
 
