@@ -13,6 +13,8 @@ Hierarchical index of the lode. Keep this file accurate when adding/moving files
 - **slides/** → replaced by per-deck lode dirs mirroring the repo:
 - **decks/avisi-theme-example/summary.md** — the Avisi theme playground deck: purpose, anatomy,
   theme-consumption path, deck-owned public assets.
+- **decks/fp-oop-bffs/summary.md** — "FP and OOP: Best Friends Forever?", the first real deck
+  migrated from Reveal.js: slide inventory, QR-component and emphasis decisions, verification trail.
 - **themes/** → per-theme lodes mirroring the repo:
   - **themes/avisi/summary.md** — the Avisi local theme (`themes/avisi/`): package metadata, palette,
     background classes, layouts, usage invariants, known limitations. Its playground lives as the

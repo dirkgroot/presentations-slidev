@@ -40,6 +40,9 @@ flowchart LR
   use `avisi-white-with-footer` — the theme's only generic light background — while the dark
   (`avisi-fancy*`) and split (`avisi-half-gray`) classes are demoed on their dedicated slides. A
   new playground slide must pick one of the four.
+- Every slide demos the theme's **Reveal-parity centering** (added 2026-11-08): content is centered
+  on both axes by default (`safe center` + `text-align: center`); `pre` stays left-aligned; opt out
+  with `avisi-top-left`.
 - Deck-wide rule: **one feature-cluster per slide, no meta-commentary slides** (decided 2026-11-08,
   restructure) — the deck demos theme features only; it does not demo the `src:` shared-slides
   pattern (that lives in [../../shared/summary.md](../../shared/summary.md), which was removed from

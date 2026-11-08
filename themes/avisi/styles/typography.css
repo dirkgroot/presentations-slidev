@@ -3,6 +3,30 @@
   color: var(--avisi-color-dark-gray);
   font-size: calc(1.1rem * var(--avisi-font-scale));
 
+  /* Reveal.js parity: content centered on both axes — was `.reveal .slides`
+     text-align: center plus the center:true JS. `safe` pins overflowing
+     slides to the top instead of clipping both ends. */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: safe center;
+  text-align: center;
+
+  /* Reveal.js parity: the source's sections run line-height 1.3 (theme
+     template `.reveal .slides section`), headings 1.2
+     (`--r-heading-line-height`). Slidev's layouts-base.css instead pins
+     li to 1.8em and p to 1.5rem — overridden below. */
+  line-height: 1.3;
+
+  pre {
+    text-align: left;
+  }
+
+  &.avisi-top-left {
+    justify-content: flex-start;
+    text-align: left;
+  }
+
   h1,
   h2,
   h3,
@@ -10,6 +34,7 @@
     color: var(--avisi-color-dark-blue);
     font-weight: 600;
     letter-spacing: normal;
+    line-height: 1.2;
     text-transform: none;
     text-shadow: none;
   }
@@ -37,7 +62,47 @@
     color: var(--avisi-color-light-blue);
   }
   li {
-    padding-top: 10px;
+    /* Slidev's base flattens li to line-height 1.8em — inherit the Reveal 1.3
+       from the section instead. Padding is the source's 20px-at-40px font
+       (Deck.scss) as a font-relative 0.5em, so it scales with
+       --avisi-font-scale. */
+    line-height: inherit;
+    padding-top: 0.5em;
+  }
+
+  p {
+    /* Slidev's base pins p to leading-6 (1.5rem) — inherit the Reveal 1.3. */
+    line-height: inherit;
+  }
+
+  /* Reveal.js theme-template parity: lists shrink-wrap and center as a block
+     with left-aligned items (`width: fit-content` covers direct flex
+     children, which would otherwise blockify `inline-block` away). */
+  ul {
+    list-style-type: disc;
+  }
+  ul ul {
+    list-style-type: square;
+  }
+  ul ul ul {
+    list-style-type: circle;
+  }
+
+  :is(ul, ol, dl) {
+    display: inline-block;
+    width: fit-content;
+    text-align: left;
+    margin: 0 0 0 1em;
+  }
+
+  & > :is(ul, ol, dl) {
+    margin-inline: auto;
+  }
+
+  :is(ul, ol, dl) :is(ul, ol, dl) {
+    display: block;
+    width: auto;
+    margin-left: 20px;
   }
 
   tr {
@@ -59,5 +124,48 @@
     color: var(--avisi-color-dark-gray);
     font-weight: 600;
     font-size: calc(1.6em * var(--avisi-font-scale));
+  }
+
+  /* Theme override of the client's grid-based two-cols (layouts/two-cols.vue):
+     a wrapped flex row — the single line of columns is centered vertically as
+     a block (align-content) while the columns stay top-aligned with each
+     other (align-items), matching the source ColumnLayout. `class` lands on
+     both columns, `layoutClass` on the root, same contract as the built-in. */
+  &.two-columns {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    align-content: center;
+    align-content: safe center;
+    justify-content: flex-start;
+
+    > div {
+      flex: 1;
+    }
+  }
+
+  /* Theme override of the client's grid-based two-cols-header
+     (layouts/two-cols-header.vue): the header (title) centers as part of the
+     global column centering, the two columns below form a wrapped flex row
+     with columns top-aligned with each other — the source deck's
+     title-above-ColumnLayout structure. `class` lands on the columns,
+     `layoutClass` on the root, same contract as the built-in (its `bottom`
+     slot flows after the columns instead of pinning to the slide's bottom
+     edge, which the centering forbids). */
+  &.two-cols-header {
+    > .cols {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      justify-content: flex-start;
+
+      /* the source ColumnLayout's gap: 80px at 1920px, halved */
+      column-gap: 40px;
+
+      > div {
+        flex: 1;
+      }
+    }
   }
 }

@@ -31,7 +31,9 @@ choice, branding approach, and canvas aspect ratio are still pending decisions
 - [x] Shared slides ported: `AvisiLogoSlide`, `WhoAmISlide`, `AboutAvisiSlide` → `shared/slides/`,
   consumed cross-deck via `src:` imports (decided 2026-11-08; see
   [../shared/summary.md](../shared/summary.md)).
-- [ ] First real deck migrated (choice pending; see [../plans/migration-poc.md](../plans/migration-poc.md)).
+- [x] First real deck migrated: **FpOopBestFriendsForever** → `decks/fp-oop-bffs/` (decided +
+      migrated 2026-11-08; see [../decks/fp-oop-bffs/summary.md](../decks/fp-oop-bffs/summary.md)) —
+      chose it over the other candidates as the lightest deck (pure text, no code/diagrams).
 - [x] Canvas aspect ratio decision: **16:9** (Slidev default), source 3:2 layouts reflow.
 
 ## Invariants

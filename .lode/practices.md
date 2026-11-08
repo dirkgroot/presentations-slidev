@@ -128,8 +128,11 @@
 
 - Dev probe: run the dev server bg + `curl`; for DOM facts use a small playwright script
   (img `complete`/`naturalWidth`, computed styles) against `http://localhost:<port>/<slide>`.
-- Visual check: `pnpm exec slidev export <entry> --format pdf --wait 4000`, then
-  `pdftoppm -r 60 -png <pdf> <prefix>` and read the PNGs. Wait: slidev's **PNG export mode misses
+- Visual check: `pnpm exec slidev export <entry> --format pdf --per-slide --wait 4000`, then
+  `pdftoppm -r 60 -png <pdf> <prefix>` and read the PNGs. **Always export with `--per-slide`**:
+  the one-piece mode silently drops named-slot content on src-imported slides (img + second slot —
+  see [shared/summary.md](shared/summary.md)); `--per-slide` still writes one merged PDF. Wait:
+  slidev's **PNG export mode misses
   slide `<img>` assets** in 53.1.0 on both the element- and the `--per-slide` screenshot path (works
   in dev and in the built SPA; PDF renders fine) — verify images via dev-probe/build, not PNG export.
 - Production check: `slidev build <entry> --out <abs-path>`, serve with `python3 -m http.server`,
@@ -166,6 +169,11 @@
   block **verbatim**, so inline Markdown inside it (`` `code` ``, emphasis) is not parsed (backticks showed
   literally in the avisi playground). Inline tags like `<a>` work fine inside Markdown list items (Slidev's
   markdown-it has html enabled).
+- Comark gotchas (verified slidev 53.1.0, details + examples in
+  [migration/feature-mapping.md](migration/feature-mapping.md) → gotchas): a block attr (`{.class}`)
+  directly after an inline HTML span is unreliable (dropped class / swallowed span — use raw HTML for
+  that heading); raw `<a>` around a linkified URL double-nests anchors (use
+  `[url](url){target=_blank}` instead).
 
 ## Environment
 

@@ -17,9 +17,10 @@ maps to Slidev, with concrete before (JSX) / after (markdown) examples. Related:
 | highlight.js `Code` w/ `data-line-numbers` | fenced code block, `{lineNumbers}` via frontmatter `highlight` | Shiki replaces highlight.js; line highlighting via `{1|3-4}` syntax |
 | `MermaidDiagram` component | native mermaid block: ```` ```mermaid ```` | No wrapper component needed |
 | RevealMath plugin | KaTeX `$…$` / `$$…$$` | Built in |
-| `ColumnLayout`/`Column` | `two-cols` layout or UnoCSS `grid="~ cols-2 gap-4"` | Attributified utilities are the repo convention |
+| Reveal `center: true` + `.slides` `text-align: center` | theme default — `.slidev-layout` flex column + `text-align: center`, `safe center` overflow fallback, `avisi-top-left` opt-out class | Ported 2026-11-08 into `themes/avisi/` (see its summary → Centering); `pre` deliberately stays left-aligned |
+| `ColumnLayout`/`Column` | `two-cols` layout or UnoCSS `grid="~ cols-2 gap-4"` | Attributified utilities are the repo convention. Title *above* the columns (h1 + ColumnLayout) → `two-cols-header` (theme override, see themes/avisi summary). Gotcha: a **src-imported** slide with an img in one named slot + a second slot loses both slots' content in one-piece PDF export — use `--per-slide` (see shared/summary) |
 | `<iframe src="https://giphy…">` | raw `<iframe>` in markdown | Works as-is; keep `drop-shadow` styling in CSS |
-| `react-qr-code` / QR PNGs | copy PNGs to deck, or a tiny `QrCode.vue` in deck `components/` | Vue port is trivial if a live QR is wanted |
+| `react-qr-code` / QR PNGs | **theme component `QrCode`** (`themes/avisi/components/QrCode.vue`, uqr-based, SVG, Avisi-dark-blue default) — `<QrCode value="…" :size="150" />` | Decided 2026-11-08; theme components are the cross-deck component mechanism (see ../themes/avisi/summary.md). Realized in `decks/fp-oop-bffs/` |
 | Reveal notes plugin | presenter notes = last comment block per slide | `[click]` markers sync to clicks |
 | decktape PDF export | `slidev export` (built-in PDF/PNG/PPTX) | No window.Reveal hack needed |
 | `scroll` route variant | Slidev has no scroll view — drop | Not needed for Slidev presenter flow |
@@ -81,3 +82,15 @@ layouts get reflowed when migrated.
   the source's one-slide-per-step AutoAnimate pattern collapses into a single slide with `v-click`s.
 - Positional slide numbering matters again after migration: click-step references shift when slides
   are inserted.
+- **Comark block attrs must not directly follow an inline HTML span** (verified slidev 53.1.0 on
+  `decks/fp-oop-bffs` slide 6): `## Goals<span class="emphasis">:</span>{.avisi-subtitle}` dropped
+  the class, and `…happens<span class="emphasis">!</span>{.avisi-subtitle}` swallowed the span
+  entirely; `<v-click>` blocks wrapping `<h2>`s + the block attr on a heading with only a `<br>`
+  between span and attr work fine. When a classed heading must end with an emphasized punctuation
+  span, write raw HTML: `<h2 class="avisi-subtitle">Goals<span class="emphasis">:</span></h2>`.
+- **Don't wrap linkified URLs in raw `<a>` tags** (verified slidev 53.1.0): markdown-it's linkify
+  runs on the text *inside* the raw anchor, producing nested duplicate `<a>` elements. Use a
+  markdown link with a Comark inline attr instead:
+  `[https://…](https://…){target=_blank}` (renders one anchor with the attribute).
+- Headmatter values containing `: ` (e.g. `title: FP and OOP: BFFs?`) must be quoted — unquoted,
+  the YAML parser fails with `BLOCK_AS_IMPLICIT_KEY`.

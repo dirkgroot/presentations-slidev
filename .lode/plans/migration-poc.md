@@ -23,7 +23,12 @@ Proof-of-concept migration of the Avisi branding and one deck from
 - [x] Playground demo (now `decks/avisi-theme-example/slides.md`) — 8 slides, verified via PDF export screenshots.
 - [x] Shared slides ported to `shared/slides/` with cross-deck `src:` imports (decided 2026-11-08;
   see [../shared/summary.md](../shared/summary.md)); the playground deck imports them as the live demo.
-- [ ] First real deck migrated to `decks/<name>/` (choice pending).
+- [ ] First real deck migrated to `decks/<name>/` → **done 2026-11-08: `decks/fp-oop-bffs/`**
+      (FpOopBestFriendsForever, the lightest candidate). Decisions taken during the migration:
+      word emphasis = HTML spans; ± lists = markdown + slide-scoped styles; "Goals:" h3 promoted to
+      h2 subtitle; QR codes live-rendered via the new theme component `QrCode` (uqr-based) instead
+      of the source's PNGs — details in [../decks/fp-oop-bffs/summary.md](../decks/fp-oop-bffs/summary.md).
+      Remaining decks may copy its patterns.
 - [x] Confirmed a deck under `decks/` consumes the theme at `theme: ../../themes/avisi` — the
   playground deck runs on it (dev-server verified 2026-11-08).
 - [ ] Optional: ir-black Shiki theme port; dark/colored logo variants; out-of-sandbox CI export.
