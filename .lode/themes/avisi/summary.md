@@ -20,8 +20,12 @@ of [dirkgroot/presentations](../migration/reveal-source-repo.md). Follows the Sl
   (`shamefullyHoist: true` in the workspace).
 - `styles/index.ts` — style entry; first imports `@slidev/client/styles/layouts-base.css` (inherit-then-
   extend pattern from the official `create-theme` template), then the css below.
-- `styles/layout.css` — Avisi palette + typography, all nested under `.slidev-layout` so styles never
-  leak into the presenter UI. Also defines CSS custom properties on `:root`.
+- `styles/tokens.css` — design tokens: CSS custom properties on `:root` (Avisi palette, the
+  `--slidev-theme-primary` knob, footer logo geometry, `--avisi-font-scale`).
+- `styles/typography.css` — global typography, all nested under `.slidev-layout` so styles never
+  leak into the presenter UI: body font/color, heading sizes/weights, links, list markers,
+  borderless tables, `.emphasis` accent, the `.cover`/`.default` `.title` sizing and
+  `h2.avisi-subtitle`.
 - `styles/code.css` — `pre` at 0.65em × 0.95 (source `Deck.scss`).
 - `styles/backgrounds.css` — the four background classes (`avisi-*`, see below) plus the white-text
   defaults for the two dark classes.
@@ -37,7 +41,10 @@ of [dirkgroot/presentations](../migration/reveal-source-repo.md). Follows the Sl
 
 ## Palette (was `src/settings.scss` / `Deck.scss`)
 
-Exposed both as Avisi CSS vars and `--slidev-theme-primary` (overridable via `themeConfig`).
+Exposed both as Avisi CSS vars and `--slidev-theme-primary` — the latter is an **alias** of
+`--avisi-color-light-blue` (`--slidev-theme-primary: var(--avisi-color-light-blue)` in `tokens.css`),
+so framework surfaces always follow the Avisi accent; deck `themeConfig` overrides it by setting the
+`--slidev-theme-primary` var itself.
 
 | token | value | use |
 |---|---|---|

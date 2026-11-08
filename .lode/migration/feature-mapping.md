@@ -25,8 +25,8 @@ maps to Slidev, with concrete before (JSX) / after (markdown) examples. Related:
 | `scroll` route variant | Slidev has no scroll view — drop | Not needed for Slidev presenter flow |
 
 > **Realized in `themes/avisi/`** — see [../themes/avisi/summary.md](../themes/avisi/summary.md):
-> fonts via `slidev.defaults` (Poppins/Fira Code, weights 400/600), palette + typography +
-> `.emphasis` in `styles/layout.css`, highlighter `dark-plus` (ir-black port pending), the four
+> fonts via `slidev.defaults` (Poppins/Fira Code, weights 400/600), palette in `styles/tokens.css`,
+> `.emphasis` in `styles/typography.css`, highlighter `dark-plus` (ir-black port pending), the four
 > background classes `avisi-fancy` / `avisi-fancy-with-footer` / `avisi-white-with-footer` /
 > `avisi-half-gray` in `styles/backgrounds.css`. On dark backgrounds text is colored white
 > manually (`style="color: white"`), as the source decks did.
@@ -61,7 +61,7 @@ maps to Slidev, with concrete before (JSX) / after (markdown) examples. Related:
 
 The Emphasis signature and `.title` sizing live once in the theme
 ([../themes/avisi/summary.md](../themes/avisi/summary.md)): `.emphasis { color: #1199bb }` under
-`.slidev-layout` in the theme's `styles/layout.css`. Footer logo + Poppins + colors are theme-global
+`.slidev-layout` in the theme's `styles/typography.css`. Footer logo + Poppins + colors are theme-global
 — implemented in `themes/avisi/` (see pending-decisions resolution in
 [../plans/migration-poc.md](../plans/migration-poc.md)).
 

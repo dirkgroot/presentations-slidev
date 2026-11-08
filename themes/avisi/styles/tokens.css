@@ -1,0 +1,28 @@
+/* Avisi theme — design tokens (CSS custom properties).
+ * Ported from the Reveal.js source repo (dirkgroot/presentations):
+ *   src/settings.scss -> the custom properties below. Typography rules ported
+ *   from src/components/Deck.scss live in typography.css.
+ */
+
+:root {
+  /* Theme-color knob, overridable via `themeConfig` headmatter. Aliased to the
+   * palette's light-blue so UnoCSS theme utilities (text-/bg-/border-primary)
+   * and client components always follow the Avisi accent by construction. */
+  --slidev-theme-primary: var(--avisi-color-light-blue);
+
+  /* Avisi palette (was src/settings.scss) */
+  --avisi-color-background: #f8f8f8;
+  --avisi-color-dark-blue: #003345;
+  --avisi-color-light-blue: #1199bb;
+  --avisi-color-dark-gray: #595959;
+  --avisi-color-light-gray: #eeeeee;
+
+  /* Footer logo geometry (was $avisiLogoHeight/$avisiLogoMargin/...). Pixel
+   * values were halved relative to the source because the source canvas was
+   * 1920px wide and the Slidev canvas is 980px. */
+  --avisi-font-scale: 0.95; /* $avisiFontScale */
+  --avisi-logo-height: 3%;
+  --avisi-logo-margin: 2%;
+  --avisi-footer-padding: 8px; /* $avisiFooterPadding (was 15px @ 1920) */
+  --avisi-footer-height: calc(var(--avisi-logo-height) + var(--avisi-logo-margin) * 2);
+}

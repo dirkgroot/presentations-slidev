@@ -1,33 +1,10 @@
-/* Avisi theme — tokens + typography.
+/* Avisi theme — global typography.
  * Ported from the Reveal.js source repo (dirkgroot/presentations):
- *   src/settings.scss   -> CSS custom properties below
- *   src/components/Deck.scss -> typography rules in the .slidev-layout block
+ *   src/components/Deck.scss -> the .slidev-layout block below. Design tokens
+ *   (custom properties from src/settings.scss) live in tokens.css.
  * All slide-scoped selectors are nested under `.slidev-layout` so styles do not
  * leak into the presenter UI (https://sli.dev/custom/directory-structure#style).
  */
-
-:root {
-  /* Theme-color knob, overridable via `themeConfig` headmatter. */
-  --slidev-theme-primary: #1199bb;
-
-  /* Avisi palette (was src/settings.scss) */
-  --avisi-color-background: #f8f8f8;
-  --avisi-color-dark-blue: #003345;
-  --avisi-color-light-blue: #1199bb;
-  --avisi-color-dark-gray: #595959;
-  --avisi-color-light-gray: #eeeeee;
-
-  /* Footer logo geometry (was $avisiLogoHeight/$avisiLogoMargin/...). Pixel
-   * values were halved relative to the source because the source canvas was
-   * 1920px wide and the Slidev canvas is 980px. */
-  --avisi-font-scale: 0.95; /* $avisiFontScale */
-  --avisi-logo-height: 3%;
-  --avisi-logo-margin: 2%;
-  --avisi-footer-padding: 8px; /* $avisiFooterPadding (was 15px @ 1920) */
-  --avisi-footer-height: calc(
-    var(--avisi-logo-height) + var(--avisi-logo-margin) * 2
-  );
-}
 
 .slidev-layout {
   background-color: #fff;
@@ -86,23 +63,24 @@
     color: var(--avisi-color-light-blue);
   }
 
-}
+  /* Layout-specific sizes (was Presentation.module.scss .title). `&.cover` is
+   * the compound form — cover/default are classes on the layout root itself,
+   * not descendants. */
+  &.cover,
+  &.default {
+    .title {
+      font-size: calc(2.75em * var(--avisi-font-scale));
+    }
+  }
 
-/* Layout-specific sizes (was Presentation.module.scss .title). */
-.slidev-layout.cover,
-.slidev-layout.default {
-  .title {
-    font-size: calc(2.75em * var(--avisi-font-scale));
+  /* Explicit Comark path: a trailing `{.avisi-subtitle}` attribute on a
+   * **heading** (`## … {.avisi-subtitle}`). Scoped to h2 on purpose — classing
+   * any other element is intentionally inert. Same source `.subtitle` h2 look:
+   * bold, 1.6em x scale, dark gray. Comark must be enabled (`comark: true`).
+   * Placed after the plain `h2` rules so it wins on source order too. */
+  h2.avisi-subtitle {
+    color: var(--avisi-color-dark-gray);
+    font-weight: 600;
+    font-size: calc(1.6em * var(--avisi-font-scale));
   }
 }
-
-/* Explicit Comark path: a trailing `{.avisi-subtitle}` attribute on a
- * **heading** (`## … {.avisi-subtitle}`). Scoped to h2 on purpose — classing
- * any other element is intentionally inert. Same source `.subtitle` h2 look:
- * bold, 1.6em x scale, dark gray. Comark must be enabled (`comark: true`). */
-.slidev-layout h2.avisi-subtitle {
-  color: var(--avisi-color-dark-gray);
-  font-weight: 600;
-  font-size: calc(1.6em * var(--avisi-font-scale));
-}
-

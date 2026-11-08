@@ -32,7 +32,8 @@ pnpm exec slidev export decks/avisi-theme-example/slides.md   # PDF
   `slidev.defaults.fonts` (Slidev fetches webfonts automatically at dev/build)
 - **Colors** — dark-blue `#003345` headings, dark-gray `#595959` body,
   light-blue `#1199bb` links/bullets/`Emphasis` punctuation (exposed as
-  `--slidev-theme-primary`, overridable via `themeConfig`)
+  `--slidev-theme-primary`, aliased to `--avisi-color-light-blue`; overridable
+  via `themeConfig`)
 - **Backgrounds** (per-slide `class:`) — ports of the source `Backgrounds`
   enum; the footer logo is a CSS background layer, no layout markup needed:
   | class | source enum |
