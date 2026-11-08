@@ -3,6 +3,8 @@ theme: ../../themes/avisi
 title: Avisi Theme Demo
 author: Dirk Groot
 comark: true
+layout: default
+class: avisi-white-with-footer
 ---
 
 # Avisi Theme Migration Demo
@@ -36,6 +38,7 @@ class: avisi-white-with-footer
 | retained | here     |
 
 ---
+class: avisi-white-with-footer
 ---
 
 # Comark subtitle<span class="emphasis">.</span>
@@ -79,6 +82,7 @@ layoutClass: avisi-half-gray gap-8
 The gray half is a content zone
 
 ---
+class: avisi-white-with-footer
 ---
 
 # Code<span class="emphasis">.</span>
@@ -92,6 +96,7 @@ export function greet(name: string): string {
 ```
 
 ---
+class: avisi-white-with-footer
 ---
 
 # Typography ladder<span class="emphasis">.</span>
@@ -105,6 +110,7 @@ export function greet(name: string): string {
 # Heading 1 — 2.5em × 0.95
 
 ---
+class: avisi-white-with-footer
 ---
 
 # Shared slides<span class="emphasis">.</span>

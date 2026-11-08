@@ -8,6 +8,10 @@ Domain language of this project (Slidev terms + project-specific meanings).
 - **Frontmatter** - YAML block at the top of a file (global config for the deck) or after a `---` separator
   (per-slide config: `layout`, `transition`, `level`, `class`, `src`, `dragPos`, ...).
 - **Layout** - Per-slide template from the theme: `seriph`, `two-cols`, `image-right`, `center`, `default`.
+- **Slide-1 cover default** - a slide without `layout:` frontmatter gets the `default` layout —
+  **except slide 1, which gets `cover`** (`@slidev/client` `useNav.ts`: `currentSlideNo === 1 ? 'cover' :
+  'default'`). A deck's first slide therefore renders centered whenever the theme's cover layout
+  centers; force `layout: default` to keep it left-aligned.
 - **Theme** - Shared styling npm package; the starter deck uses `@slidev/theme-seriph` (set in global frontmatter
   `theme: seriph`).
 - **Click animation** - Step-by-step reveal on presenter clicks via `v-click` / `v-after` directives
