@@ -3,7 +3,7 @@
 How each mechanism used in [dirkgroot/presentations](https://github.com/dirkgroot/presentations)
 maps to Slidev, with concrete before (JSX) / after (markdown) examples. Related:
 [reveal-source-repo.md](reveal-source-repo.md), [../terminology.md](../terminology.md),
-[../decks/welcome-to-slidev/summary.md](../decks/welcome-to-slidev/summary.md) (Slidev feature demos).
+[../decks/avisi-theme-example/summary.md](../decks/avisi-theme-example/summary.md) (Slidev feature demos).
 
 ## Core mapping
 
@@ -80,4 +80,4 @@ layouts get reflowed when migrated.
 - Reveal fragments inside `AutoAnimate` groups become click steps **within one Slidev slide** —
   the source's one-slide-per-step AutoAnimate pattern collapses into a single slide with `v-click`s.
 - Positional slide numbering matters again after migration: click-step references shift when slides
-  are inserted (same invariant as [../decks/welcome-to-slidev/summary.md](../decks/welcome-to-slidev/summary.md)).
+  are inserted.

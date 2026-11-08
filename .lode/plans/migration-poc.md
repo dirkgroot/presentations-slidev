@@ -30,7 +30,7 @@ Proof-of-concept migration of the Avisi branding and one deck from
 
 ## Next steps (real deck migration)
 
-1. Create `decks/<name>/` (copy the shape of `decks/welcome-to-slidev/`), set
+1. Create `decks/<name>/` (copy the shape of `decks/avisi-theme-example/`), set
    `theme: ../../themes/avisi`, verify locally path resolution works from the decks location.
 2. Port slides to markdown per [../migration/feature-mapping.md](../migration/feature-mapping.md);
    copy deck-specific assets (diagrams, QR PNGs) into the deck's `public/`. Openers/intro slides

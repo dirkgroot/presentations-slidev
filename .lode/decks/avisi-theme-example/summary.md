@@ -4,8 +4,7 @@ The Avisi theme demo deck (moved out of the theme package, decided 2026-11-08; r
 tidy one-feature-per-slide test bench, decided 2026-11-08) — the visual reference for
 [`themes/avisi/`](../../themes/avisi/summary.md), not a real presentation. Self-contained under
 `decks/avisi-theme-example/`: `slides.md` + `public/`. Related:
-[../../practices.md](../../practices.md), [../../terminology.md](../../terminology.md),
-[../welcome-to-slidev/summary.md](../welcome-to-slidev/summary.md).
+[../../practices.md](../../practices.md), [../../terminology.md](../../terminology.md).
 
 ## Global frontmatter
 

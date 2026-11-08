@@ -5,9 +5,9 @@ template, now also the target of a migration from the author's Reveal.js-based p
 ([dirkgroot/presentations](https://github.com/dirkgroot/presentations), analyzed in [migration/](migration/summary.md);
 plan in [plans/migration-poc.md](plans/migration-poc.md)). Each presentation is a self-contained deck
 directory under `decks/<name>/` holding its own `slides.md` entry, optional `pages/` (imported slide files),
-`components/` (Vue components, auto-registered), and `snippets/` (external code samples). Deck #1,
-`decks/welcome-to-slidev/`, is still the stock starter showcase (demonstrating Slidev features: clicks, magic-move,
-LaTeX, diagrams, draggables, Monaco). The Avisi branding of the source decks is recreated once as the local
+`components/` (Vue components, auto-registered), and `snippets/` (external code samples). The stock
+Slidev starter showcase deck was removed (2026-11-08); the only deck currently present is the theme
+playground `decks/avisi-theme-example/`. The Avisi branding of the source decks is recreated once as the local
 Slidev theme **`themes/avisi/`** (Poppins, palette, `avisi-*` background classes, layouts; demo playground
 `decks/avisi-theme-example/`, see [themes/avisi/summary.md](themes/avisi/summary.md)); real deck migration into
 `decks/<name>/` is next (16:9 canvas decided). The source decks' shared slides (Avisi-logo opener, $ whoami,

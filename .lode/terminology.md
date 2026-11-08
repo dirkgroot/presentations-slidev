@@ -12,8 +12,9 @@ Domain language of this project (Slidev terms + project-specific meanings).
   **except slide 1, which gets `cover`** (`@slidev/client` `useNav.ts`: `currentSlideNo === 1 ? 'cover' :
   'default'`). A deck's first slide therefore renders centered whenever the theme's cover layout
   centers; force `layout: default` to keep it left-aligned.
-- **Theme** - Shared styling npm package; the starter deck uses `@slidev/theme-seriph` (set in global frontmatter
-  `theme: seriph`).
+- **Theme** - Shared styling npm package; consumed by decks via the global frontmatter `theme:` key
+  (an npm theme by name, e.g. `theme: seriph` for `@slidev/theme-seriph`, or a local path like
+  `theme: ../../themes/avisi`).
 - **Click animation** - Step-by-step reveal on presenter clicks via `v-click` / `v-after` directives
   (with modifiers like `v-click.fade.right.scale`).
 - **`v-mark`** - Inline rough-notation markers (underline/circle, colored) on click numbers.
