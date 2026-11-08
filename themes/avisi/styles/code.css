@@ -9,4 +9,20 @@
     font-size: calc(0.65em * var(--avisi-font-scale));
     border-radius: 8px; /* slight rounding; source pre was unstyled */
   }
+
+  /* Inline code inside headings keeps the heading's weight — Slidev's
+   * inline-code chip forces font-light (300), which thins mono text in bold
+   * headings (e.g. the shared whoami slide's `$ whoami_`). Plain `h1 code` on
+   * purpose: a `pre` cannot occur inside a heading, and the `:not(pre) > code`
+   * pattern from Slidev's own rule can never match `<h1><code>` (the
+   * `:not(pre)` step would have to be the h1 itself, a strict ancestor of
+   * nothing). `inherit` tracks any heading level; the Fira Code 600 face is
+   * loaded via the theme fonts config (`weights: "400, 600"`), so no
+   * synthesis is needed. */
+  h1 code,
+  h2 code,
+  h3 code,
+  h4 code {
+    font-weight: inherit;
+  }
 }

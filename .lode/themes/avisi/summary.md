@@ -26,7 +26,13 @@ of [dirkgroot/presentations](../migration/reveal-source-repo.md). Follows the Sl
   leak into the presenter UI: body font/color, heading sizes/weights, links, list markers,
   borderless tables, `.emphasis` accent, the `.cover`/`.default` `.title` sizing and
   `h2.avisi-subtitle`.
-- `styles/code.css` — `pre` at 0.65em × 0.95 (source `Deck.scss`).
+- `styles/code.css` — `pre` at 0.65em × 0.95 (source `Deck.scss`); plus inline code inside headings
+  (`h1 code` … `h4 code`) gets `font-weight: inherit` — Slidev's inline-code chip forces
+  `font-light` (300), which thinned mono text in bold headings (the shared whoami slide's
+  `$ whoami_`; verified dev-probe + PDF 2026-11-08). Selector gotcha: Slidev's own
+  `:not(pre) > code` pattern can **never** match `<h1><code>` — the `:not(pre)` step must be a
+  strict descendant of the heading, but for direct children it *is* the heading — use plain
+  `h1 code` (a `pre` cannot occur inside a heading anyway).
 - `styles/backgrounds.css` — the four background classes (`avisi-*`, see below) plus the white-text
   defaults for the two dark classes.
 - `layouts/default.vue`, `layouts/cover.vue` — minimal `.slidev-layout` + `<slot />` wrappers; `cover`
