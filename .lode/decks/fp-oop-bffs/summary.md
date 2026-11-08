@@ -86,4 +86,7 @@ the remaining keys act as deck config. Slides 2–3 are `src:` imports of `whoam
 
 - The deck owns no assets — the QRs are theme components; all branding comes from the theme.
 - `transition: fade` is deck-level here because the source deck used it; don't copy to other decks
-  blindly (their source Decks share the same config, though).
+  blindly (their source Decks share the same config, though). The theme's
+  `styles/transitions.css` makes this fade flash-free
+  ([../../themes/avisi/summary.md](../../themes/avisi/summary.md)) — the deck keeps `transition:
+  fade` unchanged.

@@ -1,0 +1,25 @@
+/*
+ * Fix for the background "flash" during `fade` slide transitions.
+ *
+ * Slidev's built-in `fade` cross-fades both slides simultaneously
+ * (enter 0 -> 1, leave 1 -> 0), so mid-transition the combined opacity dips
+ * below 1 and the plain page background behind the slides shows through.
+ *
+ * Fix: hold the outgoing slide fully opaque underneath and let the incoming
+ * slide fade in on top of it. The stack then stays covered at every moment.
+ * The leaving slide animates opacity 1 -> 1 only to stay mounted for the
+ * transition duration (Vue removes it via its timeout fallback once the
+ * duration elapsed). The z-index keeps the incoming slide painted above the
+ * outgoing one regardless of navigation direction.
+ *
+ * #app is prefixed to win specificity over @slidev/client's transitions.css
+ * regardless of stylesheet order.
+ */
+#app .fade-enter-active {
+  z-index: 10;
+}
+
+#app .fade-leave-from,
+#app .fade-leave-to {
+  opacity: 1;
+}

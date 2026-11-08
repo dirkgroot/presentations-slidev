@@ -39,6 +39,7 @@ of [dirkgroot/presentations](../migration/reveal-source-repo.md). Follows the Sl
   children it *is* the heading — use plain `h1 code` (a `pre` cannot occur inside a heading anyway).
 - `styles/backgrounds.css` — the four background classes (`avisi-*`, see below) plus the white-text
   defaults for the two dark classes.
+- `styles/transitions.css` — flash-free `fade` fix (added 2026-11-08, see below).
 - `layouts/default.vue`, `layouts/cover.vue` — minimal `.slidev-layout` + `<slot />` wrappers; `cover`
   centers its content (absolute inset grid).
 - `layouts/two-cols.vue` — **theme override of the client layout** (added 2026-11-08): a wrapped
@@ -100,6 +101,33 @@ via the inherited `text-align`) and a halved nested indent (`margin-left: 20px`,
 Slidev's own `layouts-base.css` flattens every `ul` to `square` — our file loads after it, so
 equal-specificity overrides win. Verified against the live original deck (computed
 `inline-block`/`block` + `text-align: left` on the published site, screenshots per slide).
+
+## Slide transitions (flash-free fade, added 2026-11-08)
+
+Slidev's built-in `fade` cross-fades **both** slides simultaneously (enter 0→1, leave 1→0), so
+mid-transition the combined opacity dips below 1 and the plain page background behind the slides
+shows through — decks on this theme "flash" lighter for a fraction of a second on every
+`transition: fade` (notably the footer band, since the photo/gradient backgrounds live on each
+`.slidev-layout` and fade with it). `styles/transitions.css` fixes this by making the fade a
+**stacked fade**: the outgoing slide holds at opacity 1 underneath while the incoming slide fades
+in on top, so the stack stays fully covered at every moment. Verified by pixel sampling at the
+cross-fade midpoint (slow-mo `--slidev-transition-duration` + screenshot sampling): footer-band
+pixel identical to the settled state in both directions, against stock `fade` washing it from
+`rgb(0,52,71)` to `rgb(34,79,95)` (env `STOCK_FADE=1 probe` reproduces stock; probe at
+`.lode/tmp/`, git-ignored).
+
+Constraints to keep it working:
+
+- The leaving slide's `fade-leave-to` is intentionally `opacity: 1` — an equal 1→1 opacity
+  transition keeps the element mounted for the transition duration (Vue removes it via its timeout
+  fallback when `transitionend` never fires). Don't "fix" the no-op transition by dropping the
+  `transition` property on `.fade-leave-active`.
+- `#app` is prefixed to win specificity over `@slidev/client/styles/transitions.css` regardless of
+  stylesheet order — keep it when editing.
+- `fade-enter-active` carries `z-index: 10` so the incoming slide paints above the outgoing one
+  on **backward** navigation too (DOM order alone only helps going forward).
+- This fixes `fade` (the only transition any deck uses). `fade-out` is inherently sequential
+  (out-then-in) and would still expose the background during its gap; it's not overridden.
 
 ## Palette (was `src/settings.scss` / `Deck.scss`)
 
