@@ -1,0 +1,3 @@
+[tools]
+node = "26.13.0"  # Active LTS "Lithium"
+pnpm = "12.18.0"
