@@ -50,8 +50,10 @@
 ## Authoring conventions
 
 - Markdown files: wrap prose at **120 characters max** per line. Code blocks and tables are exempt (tables
-  are single-line by definition; breaking code breaks it). Enforced by `.markdownlint.json` (MD013 with
-  `code_blocks: false`, `tables: false`); vendored `.agents/skills/` is excluded (lock-managed).
+  are single-line by definition; breaking code breaks it). Run `pnpm lint:md` to check — config lives in
+  `.markdownlint.json` (MD013 with `code_blocks: false`, `tables: false`) and `.markdownlint-cli2.jsonc`
+  (globs + ignores; note `ignores` takes **globs**, not regexes, in markdownlint-cli2 0.24). Excluded:
+  `node_modules/`, `dist/`, `.lode/tmp/`, and vendored `.agents/skills/` (lock-managed).
 - Slide content in the deck's `slides.md`. Multi-file decks go in the deck's `pages/` and are spliced via
   `src:` frontmatter.
 - Vue components in the deck's `components/` are **auto-registered** in that deck's slides by filename
@@ -72,4 +74,4 @@
   `.gitignore` covers `node_modules`, `dist`, `*.local`, `.vite-inspect`, `.remote-assets`, `components.d.ts`,
   `.lode/tmp/`, and `.idea` (JetBrains settings, decided 2026-11-08).
 - No remote configured yet; no test suite — the only quality gates are visual review in the dev server and
-  the markdown line-length rule above.
+  `pnpm lint:md` (markdown line-length, see Authoring conventions).
