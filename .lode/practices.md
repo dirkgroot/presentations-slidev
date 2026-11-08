@@ -7,8 +7,8 @@
 
 ## Toolchain & commands
 
-- Toolchain (mise-pinned in `mise.toml`): **node `26.13.0`** (Active LTS "Lithium"; official node ≥25 Linux binaries need `libatomic.so.1` — installed via `libatomic1` in apt on normal Linux machines; in this dev sandbox the deb was extracted to `~/.local/lib` and exported via `/etc/sandbox-persistent.sh`) and **pnpm `12.18.0`** (standalone binary, no node needed for pnpm itself).
-- **Installs are pnpm-based** (decided 2026-11-07): `pnpm-lock.yaml` exists, `node_modules` is pnpm layout, and re-install after any git/material reset. The leftover root `package-lock.json` is stale — candidate for deletion. pnpm keeps its content-addressable store in-repo (`node_modules/.pnpm-store/v11`); `pnpm-workspace.yaml` sets `shamefullyHoist: true` and allowlists the `playwright-chromium` build script (pnpm v11+ blocks unapproved postinstall scripts; `@slidev/cli` also pends "agent skills" approval via `pnpm approve`).
+- Toolchain (mise-pinned in `mise.toml`): **node `26.13.0`** (Active LTS "Lithium"; official node ≥25 Linux binaries need `libatomic.so.1` — installed via `libatomic1` in apt on normal Linux machines; in this dev sandbox the deb was extracted to `~/.local/lib` and exported via `/etc/sandbox-persistent.sh`) and **pnpm `12.18.0`** (standalone binary, no node needed for pnpm itself). The stale root `package-lock.json` was **deleted** (2026-11-08, before the initial commit) — installs are pnpm-only.
+- **Installs are pnpm-based** (decided 2026-11-07): `pnpm-lock.yaml` exists, `node_modules` is pnpm layout, and re-install after any git/material reset. - Root `package-lock.json` previously duplicated installs as npm-style lock (removed; see Toolchain). pnpm keeps its content-addressable store in-repo (`node_modules/.pnpm-store/v11`); `pnpm-workspace.yaml` sets `shamefullyHoist: true` and allowlists the `playwright-chromium` build script (pnpm v11+ blocks unapproved postinstall scripts; `@slidev/cli` also pends "agent skills" approval via `pnpm approve`).
 - Scripts are **deck-parameterized** (package.json passes the deck path through to the slidev CLI):
   - dev: `pnpm dev decks/<name>/slides.md` → dev server at <http://localhost:3030>. Pass the deck's **entry file**, not the directory — slidev 53.1.0 fails with `EISDIR` on the directory form. `--open` (baked into the `dev` script) needs a GUI; drop it when running headless.
   - build: `npm run build -- decks/<name>` → static SPA in `dist/`.
@@ -34,5 +34,5 @@
 
 ## Environment
 
-- Repo had **no git history** at lode initialization (2026-11-07); `.gitignore` covers `node_modules`, `dist`, `*.local`, `.vite-inspect`, `.remote-assets`, `components.d.ts`, plus `.lode/tmp/`.
-- No test suite, no linter config — the only quality gate is visual review in the dev server.
+- Repo got its **git history on 2026-11-08**: `git init` + root commit `57dd843` "Initial commit: multi-deck Slidev workspace" on branch `main` (per explicit user request; git operations are still user-owned otherwise). `.gitignore` covers `node_modules`, `dist`, `*.local`, `.vite-inspect`, `.remote-assets`, `components.d.ts`, `.lode/tmp/`, and `.idea` (JetBrains settings, decided 2026-11-08).
+- No remote configured yet; no test suite, no linter config — the only quality gate is visual review in the dev server.
