@@ -26,11 +26,9 @@ class: avisi-white-with-footer
 
 ## Subtitles render in dark gray; links and bullet markers in light blue: {.avisi-subtitle}
 
-<ul>
-  <li>[<a href="https://avisi.nl">avisi.nl</a>] — even without a hyperlink, text stays `#1199bb`</li>
-  <li>Table borders are stripped (source: `table td { border-bottom: none }`)</li>
-  <li>Body text is dark gray `#595959`, headings dark blue `#003345`</li>
-</ul>
+- Links are plain light-blue text, no underline: [avisi.nl](https://avisi.nl)
+- Table borders are stripped (source: `table td { border-bottom: none }`)
+- Body text is dark gray `#595959`, headings dark blue `#003345`
 
 | Column A | Column B |
 |----------|----------|

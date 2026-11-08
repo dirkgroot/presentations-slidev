@@ -108,6 +108,11 @@
   clicks.
 - Animations: prefer `v-click`/`v-after` (+modifiers) and `v-mark` over manual CSS transitions; code diffs
   via `magic-move` blocks.
+- Prefer Markdown lists over raw `<ul>/<li>` blocks in slides (decided 2026-11-08): both render the same
+  `<ul>/<li>` DOM, so theme `li`/`li::marker` styles apply identically — but markdown-it emits a raw HTML
+  block **verbatim**, so inline Markdown inside it (`` `code` ``, emphasis) is not parsed (backticks showed
+  literally in the avisi playground). Inline tags like `<a>` work fine inside Markdown list items (Slidev's
+  markdown-it has html enabled).
 
 ## Environment
 

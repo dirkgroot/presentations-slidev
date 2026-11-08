@@ -14,7 +14,6 @@
   --avisi-color-background: #f8f8f8;
   --avisi-color-dark-blue: #003345;
   --avisi-color-light-blue: #1199bb;
-  --avisi-color-light-blue-hover: #00a3ba; /* reveal: color.scale(lightBlue, $lightness: 15%) */
   --avisi-color-dark-gray: #595959;
   --avisi-color-light-gray: #eeeeee;
 
@@ -66,10 +65,6 @@
     border: none;
     text-decoration: none;
     color: var(--avisi-color-light-blue);
-
-    &:hover {
-      color: var(--avisi-color-light-blue-hover);
-    }
   }
 
   /* Bullets with light-blue markers (was .reveal li::marker). */

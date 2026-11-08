@@ -44,7 +44,6 @@ Exposed both as Avisi CSS vars and `--slidev-theme-primary` (overridable via `th
 | `--avisi-color-background` | `#f8f8f8` | slide/gradient base |
 | `--avisi-color-dark-blue` | `#003345` | headings |
 | `--avisi-color-light-blue` | `#1199bb` | links, `li::marker`, `.emphasis`, primary |
-| `--avisi-color-light-blue-hover` | `#00a3ba` | link hover (hljs `scale 15%` equivalent) |
 | `--avisi-color-dark-gray` | `#595959` | body text |
 | `--avisi-color-light-gray` | `#eee` | right-half-gray background |
 | `--avisi-font-scale` | `0.95` | multiplies all ported sizes |
