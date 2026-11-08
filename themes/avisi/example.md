@@ -7,7 +7,7 @@ comark: true
 
 # Avisi Theme Migration Demo
 
-## This deck exercises every piece of the Avisi branding migrated from the Reveal.js source repo
+This deck exercises every piece of the Avisi branding migrated from the Reveal.js source repo
 
 Layouts `cover` and `default`, four background classes, Poppins, and the token colors.
 
@@ -24,7 +24,7 @@ class: avisi-white-with-footer
 
 # Title looks like this<span class="emphasis">.</span>
 
-## Subtitles render in dark gray; links and bullet markers in light blue:
+## Subtitles render in dark gray; links and bullet markers in light blue: {.avisi-subtitle}
 
 <ul>
   <li>[<a href="https://avisi.nl">avisi.nl</a>] — even without a hyperlink, text stays `#1199bb`</li>
@@ -49,7 +49,8 @@ class: avisi-white-with-footer
 - Enabled via `comark: true` in the headmatter; the subtitle heading above carries an explicit
   trailing attribute block — no raw HTML
 - `.avisi-subtitle` only styles `h2` elements in this theme, so classing anything else is inert
-- An `h2` directly after the `h1` (`h1 + h2`) styles identically when no class is given
+- This is the theme's only subtitle path — an `h2` without the class (even right after the title)
+  renders as a normal dark-blue heading
 
 ---
 class: avisi-fancy-with-footer

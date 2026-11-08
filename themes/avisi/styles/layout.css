@@ -91,16 +91,6 @@
     color: var(--avisi-color-light-blue);
   }
 
-  /* Slide subtitle: rendered like the source's `.subtitle` h2s — bold,
-   * 1.6em x scale (same formula as h2), dark gray instead of dark blue.
-   * One adjacent-sibling path: an intentional `## Subtitle` heading right
-   * after the title (`h1 + h2`, plain markdown, works on any layout). Does
-   * not fire mid-slide; any later h2 stays a normal dark-blue heading. */
-  h1 + h2 {
-    color: var(--avisi-color-dark-gray);
-    font-weight: 600;
-    font-size: calc(1.6em * var(--avisi-font-scale));
-  }
 }
 
 /* Layout-specific sizes (was Presentation.module.scss .title). */

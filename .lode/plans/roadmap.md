@@ -9,6 +9,9 @@
 - **Deploy via GitHub Pages** — decided 2026-11-07. `netlify.toml` and `vercel.json` removed. No CI workflow
   exists yet.
 - **User owns git** — they initialize git and connect the GitHub remote themselves (decided 2026-11-07).
+- **Avisi theme subtitle = explicit Comark class only** — `## … {.avisi-subtitle}`; the implicit
+  `h1 + h2` adjacent-sibling selector was removed from the theme (decided 2026-11-08, it was a
+  leftover experiment). An unclassed `h2` after an `h1` is a normal dark-blue heading.
 
 ## Open questions
 
