@@ -1,5 +1,5 @@
 ---
-name: Dev Server
+name: dev-server
 description: Start, verify, and stop the Slidev dev server for a presentation deck or theme playground in this workspace — including headless/port-published mode (remote binding) for viewing in the user's browser via sbx ports.
 ---
 
