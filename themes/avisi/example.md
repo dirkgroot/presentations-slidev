@@ -7,7 +7,7 @@ comark: true
 
 # Avisi Theme Migration Demo
 
-This deck exercises every piece of the Avisi branding migrated from the Reveal.js source repo.
+## This deck exercises every piece of the Avisi branding migrated from the Reveal.js source repo
 
 Layouts `cover` and `default`, four background classes, Poppins, and the token colors.
 
@@ -24,7 +24,7 @@ class: avisi-white-with-footer
 
 # Title looks like this<span class="emphasis">.</span>
 
-Subtitles render in dark gray; links and bullet markers in light blue:
+## Subtitles render in dark gray; links and bullet markers in light blue:
 
 <ul>
   <li>[<a href="https://avisi.nl">avisi.nl</a>] — even without a hyperlink, text stays `#1199bb`</li>
@@ -49,20 +49,20 @@ Subtitles render in dark gray; links and bullet markers in light blue:
 - Enabled via `comark: true` in the headmatter; the subtitle heading above carries an explicit
   trailing attribute block — no raw HTML
 - `.avisi-subtitle` only styles `h2` elements in this theme, so classing anything else is inert
-- The adjacent-sibling pairs (`h1 + h2` / `h1 + p`) style identically when no class is given
+- An `h2` directly after the `h1` (`h1 + h2`) styles identically when no class is given
 
 ---
 class: avisi-fancy-with-footer
 ---
 
-<h1 style="color: white">Fancy background<span class="emphasis">.</span></h1>
+# Fancy background<span class="emphasis">.</span>
 
-<!-- On dark backgrounds the source repo colors text manually
-(style={{color: "white"}}); the theme keeps that behavior. -->
+<!-- Dark backgrounds (avisi-fancy*) default to white text — no per-element
+style attributes needed (the source decks colored each element manually). -->
 
-<p style="color: white">background.png composited with the footer logo (was `FancyWithFooter`)</p>
+background.png composited with the footer logo (was `FancyWithFooter`)
 
-<h3 style="color: white">White heading, set manually like the source decks did<span class="emphasis">.</span></h3>
+## White heading, now by default<span class="emphasis">.</span>
 
 ---
 layout: two-cols

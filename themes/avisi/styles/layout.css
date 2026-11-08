@@ -93,12 +93,9 @@
 
   /* Slide subtitle: rendered like the source's `.subtitle` h2s — bold,
    * 1.6em x scale (same formula as h2), dark gray instead of dark blue.
-   * Two explicit-authoring paths share this look:
-   *  - `h1 + h2`: an intentional `## Subtitle` heading right after the title
-   *    (works on any layout, plain markdown);
-   *  - `h1 + p`: the theme-default idiom, a bare track paragraph under the
-   *    title. Neither fires mid-slide (adjacent-sibling selectors only). */
-  h1 + p,
+   * One adjacent-sibling path: an intentional `## Subtitle` heading right
+   * after the title (`h1 + h2`, plain markdown, works on any layout). Does
+   * not fire mid-slide; any later h2 stays a normal dark-blue heading. */
   h1 + h2 {
     color: var(--avisi-color-dark-gray);
     font-weight: 600;

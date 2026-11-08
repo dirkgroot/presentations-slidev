@@ -23,7 +23,8 @@ of [dirkgroot/presentations](../migration/reveal-source-repo.md). Follows the Sl
 - `styles/layout.css` — Avisi palette + typography, all nested under `.slidev-layout` so styles never
   leak into the presenter UI. Also defines CSS custom properties on `:root`.
 - `styles/code.css` — `pre` at 0.65em × 0.95 (source `Deck.scss`).
-- `styles/backgrounds.css` — the four background classes (`avisi-*`, see below).
+- `styles/backgrounds.css` — the four background classes (`avisi-*`, see below) plus the white-text
+  defaults for the two dark classes.
 - `layouts/default.vue`, `layouts/cover.vue` — minimal `.slidev-layout` + `<slot />` wrappers; `cover`
   centers its content (absolute inset grid).
 - `setup/shiki.ts` — Shiki `dark-plus` single dark highlight theme standing in for the source's hljs
@@ -50,7 +51,7 @@ Exposed both as Avisi CSS vars and `--slidev-theme-primary` (overridable via `th
 | `--avisi-font-scale` | `0.95` | multiplies all ported sizes |
 
 Typography: headings bold Poppins `#003345`, h1–h4 at 2.5/1.6/1.3/1.0 em × scale; `.emphasis` colors the
-signature light-blue punctuation; subtitles (the `h1 + h2` / `h1 + p` sibling pairs) use the source's
+signature light-blue punctuation; subtitles (the `h1 + h2` sibling pair) use the source's
 `.subtitle` h2 look (bold, `1.6em × scale`, dark gray) — see the invariants below; `li` padding-top
 10px; borderless tables (source `table td { border-bottom: none }`). Pixel values from the 1920px source
 canvas were halved for Slidev's 980px canvas (footer padding 15px → 8px).
@@ -70,6 +71,8 @@ instead of the root); there, bind the background to the root via `layoutClass:` 
 | `avisi-white-with-footer` | `WhiteWithFooter` (opaque above the footer strip) |
 | `avisi-half-gray` | `RightHalfGrayWithFooter` (right half `#eee`) |
 
+The two `avisi-fancy*` classes are dark and default to **white text** — see the invariant below.
+
 ## Usage patterns / invariants
 
 - Background classes target `.slidev-layout` — our layouts bind frontmatter `class` to that root, so
@@ -83,7 +86,7 @@ instead of the root); there, bind the background to the root via `layoutClass:` 
   exactly 50% slide width; a gap narrows the columns away from that boundary and exposes a sliver
   of `background.png` in between — fine when the strip there is near-white (as in the playground),
   but visible otherwise.
-- **Three subtitle paths** (source look = bold, 1.6em × scale, dark gray — the `.subtitle` h2s):
+- **Two subtitle paths** (source look = bold, 1.6em × scale, dark gray — the `.subtitle` h2s):
   - **explicit Comark (h2 only)** — `## Subtitle text {.avisi-subtitle}`; needs `comark: true` in the
     deck headmatter. Verified working on slidev 53.1 (2026-11-08): both paragraph- and
     heading-attached trailing block attrs work (the slidevjs/slidev#2639 gap is fixed in our comark
@@ -92,13 +95,20 @@ instead of the root); there, bind the background to the root via `layoutClass:` 
     unambiguous as an "explicit subtitle" marker.
   - **`h1 + h2`** — an intentional `## Subtitle` heading right after `# Title`: plain markdown, works
     on any layout without parser flags.
-  - **`h1 + p`** — a bare text paragraph right under the title (theme-default idiom).
-  - `h1 + h2` / `h1 + p` neither fire mid-slide; any later `h2` stays a normal dark-blue heading.
+  - **`h1 + p` is intentionally not a subtitle path** — a bare paragraph under the title stays plain
+    body text (the source decks' `h1 + p` idiom was deliberately dropped from the theme).
+  - `h1 + h2` does not fire mid-slide; any later `h2` stays a normal dark-blue heading.
     Consequence for decks: **never write an `h2` immediately after an `h1` on content slides** when
     it is not meant as subtitle (heading ladders are rendered h4→h3→h2→h1 to avoid the pair).
     Opt out per-slide with a scoped `<style>` override (`color/weight/size: inherit`).
-- Dark-background slides (`avisi-fancy*`) keep the **manual** white-text convention of the source decks
-  (`style="color: white"` per heading/paragraph) — no automatic luminance detection was added.
+- Dark-background classes (`avisi-fancy`, `avisi-fancy-with-footer`) render **white text by default**
+  (backgrounds.css: root `color` + h1–h4 + the `h1 + h2` / `h2.avisi-subtitle` subtitle selectors flip
+  to white). Slides on fancy
+  backgrounds therefore carry **no** per-element `style` attributes. Links, `li::marker` and `.emphasis`
+  keep the light-blue accent (legible on dark); Slidev's inline-code chip keeps its light background and
+  gets its dark-gray text restored (it would inherit white otherwise). Light classes keep the dark-on-light
+  palette. This intentionally diverges from the source decks, which set `style={{color: "white"}}` on every
+  element manually.
 - `avisi_logo.png` is a **white** wordmark: only correct on dark backgrounds. `cover` slides must pair
   `layout: cover` with `class: avisi-fancy`.
 - Decks consume the theme via local path relative to the deck entry file, e.g. `theme:

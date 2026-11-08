@@ -63,4 +63,31 @@
       ),
       url(../assets/background.png) 0 0 / cover no-repeat;
   }
+
+  /* Dark backgrounds default to white text — slides carry no per-element
+   * style attributes. (The source decks set style={{color: "white"}} on every
+   * heading/paragraph; the theme bakes that in here.) The root color covers
+   * paragraphs/list items; the explicit selectors re-white the heading and
+   * subtitle rules from layout.css. Links, list markers and .emphasis keep
+   * the light-blue accent, which stays legible on dark. */
+  &.avisi-fancy,
+  &.avisi-fancy-with-footer {
+    color: white;
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h1 + h2,
+    h2.avisi-subtitle {
+      color: white;
+    }
+
+    /* Slidev's inline-code chip keeps its light background on dark slides —
+     * restore its dark text so the chip stays readable (white would be
+     * inherited otherwise). */
+    :not(pre) > code {
+      color: var(--avisi-color-dark-gray);
+    }
+  }
 }
