@@ -30,11 +30,10 @@ of [dirkgroot/presentations](../migration/reveal-source-repo.md). Follows the Sl
 - `setup/shiki.ts` — Shiki `dark-plus` single dark highlight theme standing in for the source's hljs
   **ir-black** (ir-black is not bundled with Shiki; hand-port pending, see roadmap).
 - `assets/` — `background.png` + `avisi_logo.png` copied from the source repo clone; referenced from
-  CSS via relative `url(../assets/…)`, which Vite resolves/hashes in dev and build alike.
-- `public/assets/avisi_logo.png` — copy for slide-markup `<img>` use (root-absolute URL). Note: `<img
-  src=./…>` inside a deck is resolved against the served root, not the md file.
-- `example.md` — the theme playground (Slidev convention): `theme: ./`, exercises every feature.
-  Run: `pnpm exec slidev themes/avisi/example.md`.
+  CSS via relative `url(../assets/…)`, which Vite resolves/hashes in dev and build alike. The theme
+  has **no `public/` dir**: slide-markup `<img>` assets belong to the deck (served root = deck dir).
+- The former `example.md` playground moved to **`decks/avisi-theme-example/slides.md`** (decided
+  2026-11-08) — see [../../decks/avisi-theme-example/summary.md](../../decks/avisi-theme-example/summary.md).
 
 ## Palette (was `src/settings.scss` / `Deck.scss`)
 
@@ -108,7 +107,7 @@ The two `avisi-fancy*` classes are dark and default to **white text** — see th
 - `avisi_logo.png` is a **white** wordmark: only correct on dark backgrounds. `cover` slides must pair
   `layout: cover` with `class: avisi-fancy`.
 - Decks consume the theme via local path relative to the deck entry file, e.g. `theme:
-  ../../themes/avisi` from `decks/<name>/slides.md` (untested so far; the playground uses `./`).
+  ../../themes/avisi` from `decks/<name>/slides.md` (verified: the playground deck runs this way).
 - The source's bottom-right slide number was Reveal presenter UI and is intentionally not migrated.
 
 ## Known limitations

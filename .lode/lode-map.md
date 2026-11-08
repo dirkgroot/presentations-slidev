@@ -12,9 +12,12 @@ Hierarchical index of the lode. Keep this file accurate when adding/moving files
 - **slides/** → replaced by per-deck lode dirs mirroring the repo:
 - **decks/welcome-to-slidev/summary.md** — anatomy of deck #1: global frontmatter, slide inventory,
   file relationships, deck invariants.
+- **decks/avisi-theme-example/summary.md** — the Avisi theme playground deck: purpose, anatomy,
+  theme-consumption path, deck-owned public assets.
 - **themes/** → per-theme lodes mirroring the repo:
   - **themes/avisi/summary.md** — the Avisi local theme (`themes/avisi/`): package metadata, palette,
-    background classes, layouts, playground, usage invariants, known limitations.
+    background classes, layouts, usage invariants, known limitations. Its playground lives as the
+    deck `decks/avisi-theme-example/`.
 - **migration/** — Reveal.js → Slidev migration knowledge:
   - **migration/summary.md** — migration effort overview, source-material policy, status, invariants.
   - **migration/reveal-source-repo.md** — architecture, deck inventory, shared components, and Avisi

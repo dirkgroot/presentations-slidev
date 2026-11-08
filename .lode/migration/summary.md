@@ -27,7 +27,7 @@ choice, branding approach, and canvas aspect ratio are still pending decisions
 - [x] Avisi branding recreated in Slidev — as the **local custom theme** `themes/avisi/`
   (decided 2026-11-08, spec-checked against Slidev theme standards; see
   [../themes/avisi/summary.md](../themes/avisi/summary.md)).
-- [x] Theme demo / playground: `themes/avisi/example.md` (PDF-export verified 2026-11-08).
+- [x] Theme demo / playground: `decks/avisi-theme-example/slides.md` (PDF-export verified 2026-11-08).
 - [ ] First real deck migrated (choice pending; see [../plans/migration-poc.md](../plans/migration-poc.md)).
 - [x] Canvas aspect ratio decision: **16:9** (Slidev default), source 3:2 layouts reflow.
 

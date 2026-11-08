@@ -18,13 +18,12 @@ The theme provides default configs via `slidev.defaults` in `package.json`
 
 ## Playground
 
-This package doubles as its own playground: `example.md` uses `theme: ./`
-(the Slidev theme-authoring convention) and exercises fonts, colors, the four
-backgrounds, and code styling.
+The theme's playground lives as a deck in `decks/avisi-theme-example/` and
+exercises fonts, colors, the four backgrounds, and code styling:
 
 ```bash
-pnpm exec slidev themes/avisi/example.md   # dev server
-pnpm exec slidev export themes/avisi/example.md   # PDF
+pnpm exec slidev decks/avisi-theme-example/slides.md   # dev server
+pnpm exec slidev export decks/avisi-theme-example/slides.md   # PDF
 ```
 
 ## What it provides

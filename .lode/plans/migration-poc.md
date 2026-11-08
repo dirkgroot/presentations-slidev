@@ -11,17 +11,19 @@ Proof-of-concept migration of the Avisi branding and one deck from
    [../themes/avisi/summary.md](../themes/avisi/summary.md). Specs validated against the Slidev
    theme-authoring standards (skill `slidev` + official docs) before implementation.
 2. **Canvas** — **16:9** (Slidev default). Source slide layouts get reflowed when migrated.
-3. **Demo-first** — the POC began with the theme + the theme's own `example.md` playground rather
-   than migrating a whole deck first. Which **real deck** migrates first is still open
+3. **Demo-first** — the POC began with the theme + an `example.md` playground rather
+   than migrating a whole deck first (the playground has since moved to
+   `decks/avisi-theme-example/`). Which **real deck** migrates first is still open
    (candidates from the earlier POC question: GettingBetterAgainstAllOdds recommended, AoC2025,
    FpOopBestFriendsForever, DesigningWithTypesKotlin).
 
 ## Status
 
 - [x] Avisi branding recreated as `themes/avisi/` (fonts, colors, backgrounds, layouts, code styles).
-- [x] Playground demo `themes/avisi/example.md` — 7 slides, verified via PDF export screenshots.
+- [x] Playground demo (now `decks/avisi-theme-example/slides.md`) — 8 slides, verified via PDF export screenshots.
 - [ ] First real deck migrated to `decks/<name>/` (choice pending).
-- [ ] Confirm a deck under `decks/` can consume the theme at `theme: ../../themes/avisi`.
+- [x] Confirmed a deck under `decks/` consumes the theme at `theme: ../../themes/avisi` — the
+  playground deck runs on it (dev-server verified 2026-11-08).
 - [ ] Optional: ir-black Shiki theme port; dark/colored logo variants; out-of-sandbox CI export.
 
 ## Next steps (real deck migration)

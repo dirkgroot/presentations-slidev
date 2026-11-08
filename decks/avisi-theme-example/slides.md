@@ -1,5 +1,5 @@
 ---
-theme: ./
+theme: ../../themes/avisi
 title: Avisi Theme Demo
 author: Dirk Groot
 comark: true

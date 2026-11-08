@@ -16,7 +16,7 @@ The entry is the deck's markdown file, NOT a directory — slidev 53.1.0 fails w
 on the directory form:
 
 - A real deck: `decks/<name>/slides.md`
-- The Avisi theme playground: `themes/avisi/example.md`
+- The Avisi theme playground: `decks/avisi-theme-example/slides.md`
 
 If unsure which decks exist, `ls decks/` and check each deck directory's `slides.md`.
 
@@ -60,5 +60,10 @@ and `kill <pid>`. A bind conflict means the old server is still running — kill
 
 - The sandbox's outbound HTTP proxy chokes on `http://172.17.0.1:<port>` curls — always add
   `--noproxy '*'` when probing non-localhost addresses.
+- `--remote` takes an optional password value: put it **after** the entry path
+  (`slidev decks/<name>/slides.md --remote`). Before the entry, it swallows the path as the
+  password and fails with `Entry file "<root>/slides.md" does not exist`.
+- ERR_CONNECTION_RESET from the host browser usually means the server was started **without**
+  `--remote` (loopback `[::1]` bind — unreachable via a published port). Check the bind first.
 - Server state persists across turns; if the user says a previously-started server should
   still be running, check `ss -tlnp` first instead of starting a duplicate.
