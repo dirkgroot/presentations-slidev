@@ -28,6 +28,9 @@ choice, branding approach, and canvas aspect ratio are still pending decisions
   (decided 2026-11-08, spec-checked against Slidev theme standards; see
   [../themes/avisi/summary.md](../themes/avisi/summary.md)).
 - [x] Theme demo / playground: `decks/avisi-theme-example/slides.md` (PDF-export verified 2026-11-08).
+- [x] Shared slides ported: `AvisiLogoSlide`, `WhoAmISlide`, `AboutAvisiSlide` → `shared/slides/`,
+  consumed cross-deck via `src:` imports (decided 2026-11-08; see
+  [../shared/summary.md](../shared/summary.md)).
 - [ ] First real deck migrated (choice pending; see [../plans/migration-poc.md](../plans/migration-poc.md)).
 - [x] Canvas aspect ratio decision: **16:9** (Slidev default), source 3:2 layouts reflow.
 
@@ -35,9 +38,9 @@ choice, branding approach, and canvas aspect ratio are still pending decisions
 
 - Migrated decks follow the repo's multi-deck layout: `decks/<name>/` with `slides.md` as entry
   ([../practices.md](../practices.md) → Repo layout).
-- Shared source slides (`AvisiLogoSlide`, `WhoAmISlide`, `AboutAvisiSlide`) repeat across decks; in
-  Slidev they can either be duplicated per deck or extracted later — decide per deck, keep each deck
-  self-contained for now.
+- Shared source slides (`AvisiLogoSlide`, `WhoAmISlide`, `AboutAvisiSlide`) are ported **once** to
+  `shared/slides/` and imported cross-deck via `src:` (decided 2026-11-08;
+  [../shared/summary.md](../shared/summary.md)) — decks no longer duplicate them.
 - Branding tokens (Poppins, Avisi colors, footer logo, `background.png`) come from the source repo's
   assets + SCSS: assets were copied into the theme (`themes/avisi/assets/`), styling was recreated as
   CSS ([../themes/avisi/summary.md](../themes/avisi/summary.md)).

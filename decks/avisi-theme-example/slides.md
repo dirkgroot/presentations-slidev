@@ -103,3 +103,30 @@ export function greet(name: string): string {
 ## Heading 2 — 1.6em × 0.95
 
 # Heading 1 — 2.5em × 0.95
+
+---
+---
+
+# Shared slides<span class="emphasis">.</span>
+
+The next three slides are **reusable slides**, imported from `shared/slides/` with the `src:`
+frontmatter — one file per slide, shared by every deck that needs them:
+
+- `avisi-logo.md` — the Avisi-logo deck opener
+- `whoami.md` — the "$ whoami_" personal intro
+- `about-avisi.md` — the "Avisi?" company intro
+
+Each file carries its own frontmatter (`layout`, background `class`), so a deck splices in the
+finished slide via a single `src:` import.
+
+---
+src: ../../shared/slides/avisi-logo.md
+---
+
+---
+src: ../../shared/slides/whoami.md
+---
+
+---
+src: ../../shared/slides/about-avisi.md
+---

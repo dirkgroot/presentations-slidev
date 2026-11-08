@@ -40,6 +40,7 @@ recorded 2026-11-08 from a clone on `main`. Related: [summary.md](summary.md),
 
 - **Slides** (`src/slides/`): `AvisiLogoSlide` (deck opener: Avisi logo on FancyBackground),
   `WhoAmISlide` ("$ whoami" personal intro), `AboutAvisiSlide` (company intro, two columns + photo).
+  Ported to `shared/slides/` (see [../shared/summary.md](../shared/summary.md)).
 - **Components** (`src/components/`): `Deck` (Reveal wrapper), `Code` (pre/code w/ `data-trim`,
   `data-line-numbers`, kotlin/java), `Emphasis` (light-blue **punctuation span** — headings end in
   a colored `.`), `ColumnLayout`/`Column` (flex columns, `flex` weight, vertical centering),

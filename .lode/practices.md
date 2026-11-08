@@ -4,10 +4,24 @@
 
 - **One directory per deck** under `decks/<name>/` (decided 2026-11-07). Each deck is self-contained:
   `slides.md` (entry), `pages/` (files spliced via `src:`), `components/` (auto-registered by filename),
-  `snippets/` (code embedded via `<<< @/snippets/...` or `{monaco-run}` imports). All `src:` / `@/`
-  references resolve *within the deck directory*, so a deck can be moved or copied as a unit.
+  `snippets/` (code embedded via `<<< @/snippets/...` or `{monaco-run}` imports). Deck-internal
+  `src:` / `@/` references resolve *within the deck directory*, so a deck can be moved or copied as a
+  unit; the sanctioned exceptions that reach outside are headmatter `theme:` and imports of
+  [shared/slides/](shared/summary.md) (below).
 - Adding a new deck = create `decks/<name>/` (copy the shape of an existing deck) and run commands
   against that path. No global registration needed.
+
+## Shared slides (cross-deck)
+
+- Reusable slides live **one file per slide** under `shared/slides/` (decided 2026-11-08, ported
+  from the source repo's `src/slides/` components) and are consumed by any deck via a `src:` import
+  that reaches outside the deck dir — legal because the Slidev parser allows any path under the pnpm
+  workspace root. Inventory, consumption semantics, authoring rules, and the verification trail:
+  [shared/summary.md](shared/summary.md).
+- Authoring gotchas (verified slidev 53.1.0): assets in shared slides must use **markdown image
+  syntax** (raw HTML `<img src="./…">` resolves against the consuming deck's served root); per-slide
+  styles are slide-scope `<style>` blocks keyed on a dedicated slide class; **UnoCSS classes don't
+  generate in `src:`-imported files** and Comark is deck-level — shared slides rely on neither.
 
 ## Toolchain & commands
 
@@ -97,7 +111,7 @@
   `**/node_modules/**` form to also cover workspace-package node_modules dirs). Excluded:
   `**/node_modules/`, `**/dist/`, `.lode/tmp/`, and vendored `.agents/skills/` (lock-managed).
 - Slide content in the deck's `slides.md`. Multi-file decks go in the deck's `pages/` and are spliced via
-  `src:` frontmatter.
+  `src:` frontmatter; cross-deck reusable slides live in `shared/slides/` (see Repo layout).
 - Vue components in the deck's `components/` are **auto-registered** in that deck's slides by filename
   (no import needed) — e.g. `<Counter :count="10" />`.
 - Reusable code for `{monaco}` / TwoSlash demos lives in the deck's `snippets/`; embed with

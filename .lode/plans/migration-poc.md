@@ -21,6 +21,8 @@ Proof-of-concept migration of the Avisi branding and one deck from
 
 - [x] Avisi branding recreated as `themes/avisi/` (fonts, colors, backgrounds, layouts, code styles).
 - [x] Playground demo (now `decks/avisi-theme-example/slides.md`) — 8 slides, verified via PDF export screenshots.
+- [x] Shared slides ported to `shared/slides/` with cross-deck `src:` imports (decided 2026-11-08;
+  see [../shared/summary.md](../shared/summary.md)); the playground deck imports them as the live demo.
 - [ ] First real deck migrated to `decks/<name>/` (choice pending).
 - [x] Confirmed a deck under `decks/` consumes the theme at `theme: ../../themes/avisi` — the
   playground deck runs on it (dev-server verified 2026-11-08).
@@ -31,7 +33,8 @@ Proof-of-concept migration of the Avisi branding and one deck from
 1. Create `decks/<name>/` (copy the shape of `decks/welcome-to-slidev/`), set
    `theme: ../../themes/avisi`, verify locally path resolution works from the decks location.
 2. Port slides to markdown per [../migration/feature-mapping.md](../migration/feature-mapping.md);
-   copy deck-specific assets (diagrams, QR PNGs) into the deck's `public/`.
+   copy deck-specific assets (diagrams, QR PNGs) into the deck's `public/`. Openers/intro slides
+   come from `shared/slides/` via `src:` imports — do not re-port them per deck.
 3. Dark-background slides: manual `style="color: white"` per the theme convention.
 4. Verify: `pnpm exec slidev export decks/<name>/slides.md` and rasterize (see
    [../practices.md](../practices.md) → Verification); check fragments/clicks in the dev server.

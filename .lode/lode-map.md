@@ -18,6 +18,10 @@ Hierarchical index of the lode. Keep this file accurate when adding/moving files
   - **themes/avisi/summary.md** — the Avisi local theme (`themes/avisi/`): package metadata, palette,
     background classes, layouts, usage invariants, known limitations. Its playground lives as the
     deck `decks/avisi-theme-example/`.
+- **shared/** → per-dir lode mirroring the repo:
+  - **shared/summary.md** — the reusable shared slides (`shared/slides/`): inventory (ported from
+    the revealjs `src/slides/`), cross-deck `src:` consumption, authoring rules (assets / scoped
+    styles / Uno / Comark gotchas), verification trail.
 - **migration/** — Reveal.js → Slidev migration knowledge:
   - **migration/summary.md** — migration effort overview, source-material policy, status, invariants.
   - **migration/reveal-source-repo.md** — architecture, deck inventory, shared components, and Avisi

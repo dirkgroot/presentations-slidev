@@ -18,6 +18,8 @@ Domain language of this project (Slidev terms + project-specific meanings).
 - **TwoSlash** - TypeScript annotations in code blocks (`twoslash` tag): hover types + inline errors.
 - **Monaco** - In-slide editor: `{monaco}` tag turns a code block into an editor; `{monaco-run}` makes it executable.
 - **`src` import** - Splice slides from another file: frontmatter `src: ./pages/imported-slides.md`.
+- **Shared slide** - Reusable slide under `shared/slides/`, spliced into any deck via a `src:` import;
+  carries its own frontmatter and assumes the Avisi theme (see `.lode/shared/summary.md`).
 - **Snippet** - External code embedded into a slide with `<<< @/snippets/<file>#region`.
 - **`v-drag`** - Draggable element/arrow; positions persisted in the slide's `dragPos` frontmatter key.
 - **Drawings** - Built-in pen/pointer overlay; `drawings.persist` in global frontmatter controls whether
