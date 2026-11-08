@@ -1,0 +1,66 @@
+/* Avisi theme — slide backgrounds.
+ * Faithful port of src/components/Backgrounds.tsx (the `Backgrounds` enum):
+ * the Avisi footer logo is drawn as a CSS background layer, so slides never
+ * need footer markup. Apply per-slide via frontmatter `class: avisi-fancy` etc.
+ */
+
+.slidev-layout {
+  /* Backgrounds.FancyBackground — background.png, cover. */
+  &.avisi-fancy {
+    background: url(../assets/background.png) 0 0 / cover no-repeat;
+  }
+
+  /* Backgrounds.FancyWithFooter — logo bottom-left + fancy. */
+  &.avisi-fancy-with-footer {
+    background:
+      url(../assets/avisi_logo.png)
+        left calc(var(--avisi-footer-padding) * 2) bottom var(--avisi-logo-margin) /
+        auto var(--avisi-logo-height)
+        no-repeat,
+      url(../assets/background.png) 0 0 / cover no-repeat;
+  }
+
+  /* Backgrounds.WhiteWithFooter — logo + opaque background-color above the
+   * footer strip (fancy shows through there, exactly as in the source). */
+  &.avisi-white-with-footer {
+    background:
+      url(../assets/avisi_logo.png)
+        left calc(var(--avisi-footer-padding) * 2) bottom var(--avisi-logo-margin) /
+        auto var(--avisi-logo-height)
+        no-repeat,
+      linear-gradient(
+        to bottom,
+        var(--avisi-color-background) 0%,
+        var(--avisi-color-background) calc(100% - var(--avisi-footer-height)),
+        transparent calc(100% - var(--avisi-footer-height)),
+        transparent 100%
+      ),
+      url(../assets/background.png) 0 0 / cover no-repeat;
+  }
+
+  /* Backgrounds.RightHalfGrayWithFooter — right half #eee above the footer
+   * strip, composited over white-with-footer. */
+  &.avisi-half-gray {
+    background:
+      linear-gradient(
+          to right,
+          var(--avisi-color-background) 0%,
+          var(--avisi-color-background) 50%,
+          var(--avisi-color-light-gray) 50%,
+          var(--avisi-color-light-gray) 100%
+        )
+        top / 100% calc(100% - var(--avisi-footer-height)) no-repeat,
+      url(../assets/avisi_logo.png)
+        left calc(var(--avisi-footer-padding) * 2) bottom var(--avisi-logo-margin) /
+        auto var(--avisi-logo-height)
+        no-repeat,
+      linear-gradient(
+        to bottom,
+        var(--avisi-color-background) 0%,
+        var(--avisi-color-background) calc(100% - var(--avisi-footer-height)),
+        transparent calc(100% - var(--avisi-footer-height)),
+        transparent 100%
+      ),
+      url(../assets/background.png) 0 0 / cover no-repeat;
+  }
+}

@@ -1,0 +1,12 @@
+/* Avisi theme — code styling. Ported from src/components/Deck.scss:
+ *   .reveal pre { font-size: 0.65em }
+ * Syntax colors come from the Shiki highlight theme configured in
+ * setup/setup-shiki.ts (source used ir-black with highlight.js).
+ */
+
+.slidev-layout {
+  pre {
+    font-size: calc(0.65em * var(--avisi-font-scale));
+    border-radius: 8px; /* slight rounding; source pre was unstyled */
+  }
+}

@@ -1,4 +1,4 @@
 {
   "globs": ["**/*.md"],
-  "ignores": ["node_modules/**", "dist/**", ".lode/tmp/**", ".agents/**"]
+  "ignores": ["**/node_modules/**", "**/dist/**", ".lode/tmp/**", ".agents/**"]
 }
