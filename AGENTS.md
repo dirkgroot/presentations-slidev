@@ -82,6 +82,15 @@ perform a task?" — the former is lode, the latter is a skill.
 - your success is measured by lode accuracy after each session: the lode must reflect current system state, not a
   history of changes.
 
+## Code comments
+
+- Comments only when there is a good reason, and only explaining **why**, never the *what* — the code is the what.
+- Never narrate a diagnosis or fix rationale in source comments; that rationale belongs in the lode entry for the
+  affected component and in the commit body. Keep any justified comment to at most a line or two.
+- Applies to every source file (`.css`, `.vue`, `.ts`, slides markdown). Before finishing any change, re-scan your
+  diff for comments that slipped in and remove them — long comment blocks were twice stripped from this repo
+  (`fd93f97`, the background-flash fix) and are expected to come back without this guard.
+
 ## Example — Lode entry after adding retry logic to API client
 
 **BAD (changelog style):**

@@ -1,21 +1,3 @@
-<!--
-  Theme override of the client's grid-based two-cols-header: the default slot
-  (e.g. a title) spans both columns and is centered by the theme's global
-  centering, with the two columns below it. Same slot contract as the
-  built-in:
-
-```md
----
-layout: two-cols-header
----
-# Title spanning both columns
-::left::
-# Left
-::right::
-# Right
-```
--->
-
 <script setup lang="ts">
 const props = defineProps({
   class: {

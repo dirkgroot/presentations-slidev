@@ -145,7 +145,12 @@
   what. Design rationale, port provenance ("was `settings.scss`"), and non-obvious mechanics
   (cascade-order overrides, selector gotchas) live in the **lode**, not in source comments —
   consult the lode instead of re-documenting it there. No comment merely to name the source
-  variable/class a port came from.
+  variable/class a port came from. The rule also lives in `AGENTS.md` → "Code comments" so every
+  session loads it without a lode detour (the policy was violated repeatedly by the 2026-11-08
+  migration+fix session — narrative blocks re-added across `styles/transitions.css`,
+  `styles/typography.css`, `layouts/two-cols-header.vue`, `shared/slides/about-avisi.md` — and
+  cleaned to ≤1-line why-comments; multi-line rationale was already here in the lode). Sensitive:
+  slides/decks and CSS are just as subject to it as any other file.
 - Markdown files: wrap prose at **120 characters max** per line. Code blocks and tables are exempt (tables
   are single-line by definition; breaking code breaks it). Run `pnpm lint:md` to check — config lives in
   `.markdownlint.json` (MD013 with `code_blocks: false`, `tables: false`) and `.markdownlint-cli2.jsonc`
