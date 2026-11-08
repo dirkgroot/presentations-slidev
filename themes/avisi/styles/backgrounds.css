@@ -81,12 +81,5 @@
     h2.avisi-subtitle {
       color: white;
     }
-
-    /* Slidev's inline-code chip keeps its light background on dark slides —
-     * restore its dark text so the chip stays readable (white would be
-     * inherited otherwise). */
-    :not(pre) > code {
-      color: var(--avisi-color-dark-gray);
-    }
   }
 }

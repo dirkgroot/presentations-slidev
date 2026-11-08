@@ -9,7 +9,23 @@
     font-size: calc(0.65em * var(--avisi-font-scale));
     border-radius: 8px; /* slight rounding; source pre was unstyled */
   }
+}
 
+/* Inline code: no chip/frame. Slidev's built-in rule (identical selectors in
+ * the imported @slidev/client code css, which comes first in index.ts) gives
+ * inline code a light background, padding and a rounded radius; we drop the
+ * box and keep only sizing/weight so mono text renders as plain text. Same
+ * selectors + later source order ⇒ our declarations win (equal specificity).
+ * `.slidev-note` is included for the notes view, mirroring the base rule. */
+.slidev-note :not(pre) > code,
+.slidev-layout :not(pre) > code {
+  background: none;
+  padding: 0;
+  border-radius: 0;
+  font-weight: 300; /* was the chip's `--uno: font-light` */
+}
+
+.slidev-layout {
   /* Inline code inside headings keeps the heading's weight — Slidev's
    * inline-code chip forces font-light (300), which thins mono text in bold
    * headings (e.g. the shared whoami slide's `$ whoami_`). Plain `h1 code` on

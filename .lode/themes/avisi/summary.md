@@ -26,13 +26,17 @@ of [dirkgroot/presentations](../migration/reveal-source-repo.md). Follows the Sl
   leak into the presenter UI: body font/color, heading sizes/weights, links, list markers,
   borderless tables, `.emphasis` accent, the `.cover`/`.default` `.title` sizing and
   `h2.avisi-subtitle`.
-- `styles/code.css` — `pre` at 0.65em × 0.95 (source `Deck.scss`); plus inline code inside headings
-  (`h1 code` … `h4 code`) gets `font-weight: inherit` — Slidev's inline-code chip forces
-  `font-light` (300), which thinned mono text in bold headings (the shared whoami slide's
-  `$ whoami_`; verified dev-probe + PDF 2026-11-08). Selector gotcha: Slidev's own
-  `:not(pre) > code` pattern can **never** match `<h1><code>` — the `:not(pre)` step must be a
-  strict descendant of the heading, but for direct children it *is* the heading — use plain
-  `h1 code` (a `pre` cannot occur inside a heading anyway).
+- `styles/code.css` — `pre` at 0.65em × 0.95 (source `Deck.scss`); inline code renders **chip-free**
+  (decided 2026-11-08): the theme overrides Slidev's built-in `:not(pre) > code` chip rule (identical
+  selectors in `slides-code.css`, imported first from `styles/index.ts`; later source order wins at
+  equal specificity — the override must sit at **top level**, not nested under `.slidev-layout`,
+  or the selector doubles and stops matching) with `background: none; padding: 0; border-radius: 0`
+  and keeps the chip's `font-light` 300. Plus inline code inside headings (`h1 code` … `h4 code`)
+  gets `font-weight: inherit` — Slidev's inline-code chip forces `font-light` (300), which thinned
+  mono text in bold headings (the shared whoami slide's `$ whoami_`; verified dev-probe + PDF
+  2026-11-08). Selector gotcha: Slidev's own `:not(pre) > code` pattern can **never** match
+  `<h1><code>` — the `:not(pre)` step must be a strict descendant of the heading, but for direct
+  children it *is* the heading — use plain `h1 code` (a `pre` cannot occur inside a heading anyway).
 - `styles/backgrounds.css` — the four background classes (`avisi-*`, see below) plus the white-text
   defaults for the two dark classes.
 - `layouts/default.vue`, `layouts/cover.vue` — minimal `.slidev-layout` + `<slot />` wrappers; `cover`
@@ -112,8 +116,9 @@ The two `avisi-fancy*` classes are dark and default to **white text** — see th
   (backgrounds.css: root `color` + h1–h4 + the `h2.avisi-subtitle` subtitle selector flip
   to white). Slides on fancy
   backgrounds therefore carry **no** per-element `style` attributes. Links, `li::marker` and `.emphasis`
-  keep the light-blue accent (legible on dark); Slidev's inline-code chip keeps its light background and
-  gets its dark-gray text restored (it would inherit white otherwise). Light classes keep the dark-on-light
+  keep the light-blue accent (legible on dark); inline code is chip-free (code.css) and carries **no
+  color override** here — it inherits the root's white like regular text (verified headless probe
+  2026-11-08: chip background gone on all playground slides). Light classes keep the dark-on-light
   palette. This intentionally diverges from the source decks, which set `style={{color: "white"}}` on every
   element manually.
 - `avisi_logo.png` is a **white** wordmark: only correct on dark backgrounds. `cover` slides must pair
