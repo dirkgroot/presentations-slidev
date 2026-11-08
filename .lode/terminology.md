@@ -19,3 +19,8 @@ Domain language of this project (Slidev terms + project-specific meanings).
 - **Drawings** - Built-in pen/pointer overlay; `drawings.persist` in global frontmatter controls whether drawings survive reload.
 - **Comark** - Extended markdown syntax enabled by `comark: true` in global frontmatter.
 - **SPA export** - `slidev build` produces a static hostable app in `dist/` (what Netlify/Vercel publish).
+- **Reveal.js** - HTML/JS slide framework used by the author's source decks; embedded as a React component in [dirkgroot/presentations](https://github.com/dirkgroot/presentations) (see `.lode/migration/`).
+- **Section / Fragment** - Reveal.js terms: a `<section>` is one slide; a `fragment` is a step revealed on click (→ `v-click`).
+- **AutoAnimate** - Reveal.js feature animating diffs between consecutive slides (→ `v-click` steps or magic-move).
+- **Avisi branding** - visual identity of the source decks: Poppins font, dark blue `#003345` / light blue `#1199bb`, footer logo bottom-left, `background.png` fancy background, colored `Emphasis` punctuation in headings.
+- **decktape** - PDF exporter used by the source Reveal decks (→ built-in `slidev export`).
