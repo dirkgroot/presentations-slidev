@@ -24,16 +24,21 @@ on the directory form: `decks/<name>/slides.md`.
 
 ## Step 2: Start the server
 
-Run in the background (log to `.lode/tmp/logs/slidev-dev.log`):
+Run **detached** (`setsid`, own session, reparented to PID 1) and let the call return immediately
+(verify separately in Step 3):
 
 ```bash
-bash -l -c "mise exec -- pnpm exec slidev <entry> > .lode/tmp/logs/slidev-dev.log 2>&1"
+setsid nohup bash -l -c "mise exec -- pnpm exec slidev <entry> --remote --bind :: \
+  > .lode/tmp/logs/slidev-dev.log 2>&1" < /dev/null &
 ```
 
+- Detached is REQUIRED for longevity: background **tool-shell** commands get reaped with SIGTERM a
+  while after startup (exit 143), and any process in their group dies with the wrapper — two slidev
+  servers were lost this way (verified 2026-11-08) before the `setsid` form held.
 - Do NOT pass `--open` (no GUI in this sandbox).
-- `--remote` binds `0.0.0.0` instead of `[::1]` loopback: REQUIRED when the user wants to
-  view the slides from their host browser via `sbx ports <sandbox> --publish 3030:3030/tcp`.
-  Plain mode is fine when only the sandbox itself will curl the server.
+- `--remote --bind ::` is the recommended tail: dual-stack bind (`*:3030`) serves the published port
+  (host-browser preview) **and** keeps the OpenCode MCP URL (`localhost` → IPv6) working. Plain mode
+  (no flags) is fine when only the sandbox itself will curl the server, but binds IPv6 loopback only.
 
 ## Step 3: Verify
 
@@ -84,6 +89,9 @@ Find the pid via `ss -tlnp | grep 3030` (the `users:(("node-MainThread",pid=<pid
 and `kill <pid>`. A bind conflict means the old server is still running — kill before restart.
 
 ## Gotchas
+
+- Start detached with `setsid` (see Step 2) — a tool-shell background command gets SIGTERM'd and
+  takes the slidev server down with it (two verified losses, 2026-11-08, exit code 143, log clean).
 
 - The sandbox's outbound HTTP proxy chokes on `http://172.17.0.1:<port>` curls — always add
   `--noproxy '*'` when probing non-localhost addresses.
