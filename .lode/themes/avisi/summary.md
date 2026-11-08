@@ -10,6 +10,14 @@ of [dirkgroot/presentations](../migration/reveal-source-repo.md). Follows the Sl
 
 - `package.json` — `slidev: { colorSchema: "light", defaults: { fonts } }`; fonts resolve via Google
   Fonts (Poppins sans+serif, Fira Code mono, weights 400/600) — decks need **no** `fonts:` headmatter.
+- `tsconfig.json` — loads `compilerOptions.types: ["vite/client"]`, whose ambient
+  `declare module '*.css'` makes type-checkers accept the side-effect CSS imports in `styles/index.ts`
+  (fixes `TS2882` on `@slidev/client/styles/layouts-base.css`). The tsconfig is required because
+  IntelliJ only reliably binds ambient declarations when an explicit tsconfig scopes the theme (an
+  `env.d.ts` triple-slash reference fixed tsc but was not picked up by IntelliJ's inferred project,
+  and was later removed as redundant). Covers `styles/**` and `setup/**`; extend `include` if more
+  theme TypeScript is added. `vite` resolves via the hoisted root `node_modules`
+  (`shamefullyHoist: true` in the workspace).
 - `styles/index.ts` — style entry; first imports `@slidev/client/styles/layouts-base.css` (inherit-then-
   extend pattern from the official `create-theme` template), then the css below.
 - `styles/layout.css` — Avisi palette + typography, all nested under `.slidev-layout` so styles never
