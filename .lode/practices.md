@@ -43,7 +43,10 @@
     (`[::1]:3030`); when the server must be reachable through the host's published port, add **`--remote`**
     (slidev 53.x: "listen public host and enable remote control", binds `0.0.0.0`) — verified with
     `ss -tlnp | grep 3030` and `curl -s --noproxy '*' http://172.17.0.1:3030/` (the sandbox proxy
-    intercepts non-loopback curls unless bypassed with `--noproxy`). Wrapped as the project skill
+    intercepts non-loopback curls unless bypassed with `--noproxy`). For the combination "published port
+    **and** the OpenCode MCP URL", use `--remote --bind ::` — dual-stack `*:3030` accepts IPv4 (published
+    port) **and** IPv6 (the MCP URL's `localhost`), verified 2026-11-08 (plain `--remote 0.0.0.0` is
+    IPv4-only and would break the `localhost` MCP resolution). Wrapped as the project skill
     `dev-server` (`.agents/skills/dev-server/`), which covers entry-file choice, headless flags,
     verification, and stopping/restarting. Changes that **do not** hot-apply to a running dev server:
     new/renamed layout, component, or config files, AND headmatter parser flags (`comark: true`, …) —
@@ -64,6 +67,36 @@
   `git` tool — it would require the asdf `nishidayuya/asdf-git` plugin, which compiles git from kernel.org
   source and blocks machines without a compiler or kernel.org access. System git (`2.53.0`) is used as-is
   for repo operations, which remain self-managed per the convention below.
+
+### Slidev MCP server (dev-server `/__mcp` + stdio `slidev mcp`)
+
+- The dev server **is also an MCP server** (confirmed in the `@slidev/cli@53.1.0` bundle): a Vite plugin
+  (`slidev:mcp`) exposes the served deck over MCP streamable HTTP at **`http://localhost:<port>/__mcp`**
+  for as long as that dev-server process runs, letting AI agents inspect, edit, and navigate the deck live.
+  Disabled per deck with `mcp: false` in the headmatter.
+- The **same tool set is also served over stdio** by the standalone command `slidev mcp <entry>`
+  (`startMcpStdioServer` → same `createSlidevMcpServer`), for clients that speak stdio rather than HTTP.
+- Tools (8): `slidev-get-info` (deck overview: entry file, title, slide count, live server URL/position),
+  `slidev-list-slides` (number/title/layout/source; `hide`/`disabled` slides excluded), `slidev-get-slide`
+  (frontmatter + content + note), `slidev-update-slide` (patch content/note/frontmatter; `null` deletes a
+  frontmatter key), `slidev-insert-slide`, `slidev-remove-slide`, `slidev-move-slide` (same-file
+  reordering), `slidev-goto-slide` (navigates **all connected browsers** — verify-after-edit).
+- **Wired into OpenCode** (2026-11-08): **global config** `~/.config/opencode/opencode.json` registers
+  `mcp.servers.slidev` as `{ type: "remote", url: "http://localhost:3030/__mcp" }` (located there because
+  the user wants it **developer-local, not project-tracked**; OpenCode has no official per-project
+  local config file — the upstream `opencode.local.json` PR (#17234) was closed stale 2026-05-12,
+  unmerged). Config warm-reloads, so the 8 tools appear as `slidev_*` (Code Mode:
+  `tools.slidev[...]`) without restart; no OAuth needed (the server never returns 401). Verified
+  live: `opencode mcp list` → connected, and `slidev-get-info` → deck metadata (title, 7 slides,
+  server URL, live position incl. page/clicks). Layout: the server object sits under `mcp.servers.slidev` (V2 shape)
+  *while* the pre-existing legacy `mcp["mcp-gateway"]` entry (direct-key + `enabled`, pre-V2 shape) is
+  left untouched — both connect simultaneously. Gotchas: OpenCode must resolve `localhost` —
+  `127.0.0.1` FAILS (the CLI server binds IPv6 `[::1]:3030` only in plain mode; `--remote --bind ::`
+  is dual-stack); the endpoint serves whatever **deck** the dev server was started with (swap decks =
+  restart the server); and only one dev server per port. Since the entry is **global**, it appears in
+  every project — shows `disconnected` wherever no dev server is running (harmless, tools absent).
+- Lode vs. skill: this section is what the MCP surface *is*; the start/verify/stop procedure stays in
+  project skill `dev-server`.
 
 ## Deployment
 
@@ -139,6 +172,7 @@
 - Repo got its **git history on 2026-11-08**: `git init` + root commit `57dd843` "Initial commit: multi-deck
   Slidev workspace" on branch `main` (per explicit user request; git operations are still user-owned otherwise).
   `.gitignore` covers `node_modules`, `dist`, `*.local`, `.vite-inspect`, `.remote-assets`, `components.d.ts`,
-  `.lode/tmp/`, and `.idea` (JetBrains settings, decided 2026-11-08).
+  `.lode/tmp/`, `.idea` (JetBrains settings, decided 2026-11-08), and `opencode.json`
+  (local-only OpenCode config; slidev MCP wiring lives there — decided 2026-11-08).
 - No remote configured yet; no test suite — the only quality gates are visual review in the dev server and
   `pnpm lint:md` (markdown line-length, see Authoring conventions).

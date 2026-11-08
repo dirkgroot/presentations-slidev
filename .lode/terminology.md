@@ -48,3 +48,8 @@ Domain language of this project (Slidev terms + project-specific meanings).
   visual test deck for the migration.
 - **`--slidev-theme-primary`** - theme color CSS var overridable from deck frontmatter `themeConfig:`.
 - **decktape** - PDF exporter used by the source Reveal decks (→ built-in `slidev export`).
+- **Slidev MCP server** - MCP server bundled with the dev server: while `slidev <entry>` runs, the same
+  process exposes MCP over streamable HTTP at `http://localhost:<port>/__mcp` (Vite plugin `slidev:mcp`),
+  letting AI agents inspect, edit, and navigate the deck live. Disable with `mcp: false` in the deck
+  headmatter. Same tool set also standalone over stdio: `slidev mcp <entry>` (see
+  `.lode/practices.md` → "Slidev MCP server").

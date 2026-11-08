@@ -53,6 +53,31 @@ on their host after running: `sbx ports <sandbox-name> --publish 3030:3030/tcp`
 Also mention: presenter mode `http://localhost:3030/presenter/`, overview
 `http://localhost:3030/overview/`. Logs stream to `.lode/tmp/logs/slidev-dev.log`.
 
+## MCP (built into the dev server)
+
+While the dev server runs, the same process is also an MCP **streamable-HTTP** server at
+`http://localhost:<port>/__mcp` (Vite plugin `slidev:mcp`; disable per deck with `mcp: false` in the
+headmatter). Same tool set also exists standalone over stdio: `pnpm exec slidev mcp <entry>`.
+Tools: `slidev-get-info`, `slidev-list-slides`, `slidev-get-slide`, `slidev-update-slide`,
+`slidev-insert-slide`, `slidev-remove-slide`, `slidev-move-slide`, `slidev-goto-slide`.
+Details (descriptive record): `.lode/practices.md` → "Slidev MCP server".
+
+### Wiring into OpenCode (global config, migrated 2026-11-08)
+
+- **Global** `~/.config/opencode/opencode.json` has `mcp.servers.slidev =
+  { type: "remote", url: "http://localhost:3030/__mcp" }` (deployer-local, not project-tracked —
+  OpenCode has no official per-project local config file; a PR for `opencode.local.json` was closed
+  stale unmerged). Config warm-reloads; `opencode mcp list` shows state.
+- URL must use `localhost`, not `127.0.0.1` — plain mode binds IPv6 `[::1]:3030` only, so `127.0.0.1`
+  is connection-refused (verified). The endpoint serves the deck of whichever server is on that port;
+  to serve a different deck, restart the server for it. Being global, the server shows `disconnected`
+  in any project without a running dev server (harmless).
+- When the user publishes the port for host-browser preview AND the MCP must keep working, restart with
+  `--remote --bind ::` (dual-stack `*:3030`, verified 2026-11-08): IPv4 for the published port, IPv6
+  for the MCP URL. Plain `--remote` (binds `0.0.0.0`, IPv4-only) risks breaking the MCP `localhost`
+  resolution. Remote control is open without a password — pass one only if the user asks
+  (value goes **after** the entry path).
+
 ## Stop / restart
 
 Find the pid via `ss -tlnp | grep 3030` (the `users:(("node-MainThread",pid=<pid>))` field)
