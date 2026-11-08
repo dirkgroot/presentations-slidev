@@ -1,10 +1,14 @@
 # Deck: welcome-to-slidev
 
-Deck #1 — the stock Slidev starter showcase. Lives at `decks/welcome-to-slidev/` (self-contained: `slides.md` + `pages/` + `components/` + `snippets/`). Related: [../../practices.md](../../practices.md), [../../terminology.md](../../terminology.md).
+Deck #1 — the stock Slidev starter showcase. Lives at `decks/welcome-to-slidev/` (self-contained: `slides.md` +
+`pages/` + `components/` + `snippets/`). Related: [../../practices.md](../../practices.md),
+[../../terminology.md](../../terminology.md).
 
 ## Global frontmatter (applies to whole deck)
 
-`theme: seriph` · `background: https://cover.sli.dev` (random Unsplash) · `title: Welcome to Slidev` · `class: text-center` · `drawings.persist: false` · `transition: slide-left` (default; individual slides override, e.g. `fade-out`, `slide-up`) · `comark: true` · `duration: 35min`.
+`theme: seriph` · `background: https://cover.sli.dev` (random Unsplash) · `title: Welcome to Slidev` ·
+`class: text-center` · `drawings.persist: false` · `transition: slide-left` (default; individual slides
+override, e.g. `fade-out`, `slide-up`) · `comark: true` · `duration: 35min`.
 
 ## Slide inventory (starter showcase)
 
@@ -29,7 +33,7 @@ Deck #1 — the stock Slidev starter showcase. Lives at `decks/welcome-to-slidev
 
 ```mermaid
 flowchart TD
-    A[decks/welcome-to-slidev/slides.md<br/>deck entry + global frontmatter] -->|src: import| B[pages/imported-slides.md]
+    A[decks/welcome-to-slidev/slides.md<br/>deck entry + frontmatter] -->|src: import| B[pages/imported-slides.md]
     A -->|auto-registered by filename| C[components/Counter.vue]
     A -->|&lt;&lt;&lt; embed / monaco-run| D[snippets/external.ts]
     A -->|renders with| E[theme-seriph]
@@ -39,7 +43,10 @@ flowchart TD
 
 ## Invariants
 
-- A line `---` on its own separates slides; the first frontmatter block is **global** config, subsequent ones are per-slide.
-- Slide numbering is positional — inserting/removing a slide shifts every later slide (click-step references and `v-mark="7"` numbers are positional too).
+- A line `---` on its own separates slides; the first frontmatter block is **global** config, subsequent ones
+  are per-slide.
+- Slide numbering is positional — inserting/removing a slide shifts every later slide (click-step references
+  and `v-mark="7"` numbers are positional too).
 - Components referenced in markdown must exist in this deck's `components/` with matching filename.
-- All deck-internal references (`src:`, `<<< @/snippets/...`) resolve relative to the deck directory — the deck is relocatable as a unit.
+- All deck-internal references (`src:`, `<<< @/snippets/...`) resolve relative to the deck directory — the deck
+  is relocatable as a unit.

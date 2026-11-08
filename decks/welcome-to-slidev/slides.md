@@ -42,7 +42,8 @@ Presentation slides for developers
 </div>
 
 <!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
+The last comment block of each slide will be treated as slide notes. It will be visible and editable
+in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
 -->
 
 ---
@@ -93,7 +94,8 @@ level: 2
 
 # Navigation
 
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/ui#navigation-bar)
+Hover on the bottom-left corner to see the navigation's controls panel,
+[learn more](https://sli.dev/guide/ui#navigation-bar)
 
 ## Keyboard Shortcuts
 
@@ -191,9 +193,11 @@ level: 2
 
 # Shiki Magic Move
 
-Powered by [shiki-magic-move](https://shiki-magic-move.netlify.app/), Slidev supports animations across multiple code snippets.
+Powered by [shiki-magic-move](https://shiki-magic-move.netlify.app/), Slidev supports animations across
+multiple code snippets.
 
-Add multiple code blocks and wrap them with <code>````md magic-move</code> (four backticks) to enable the magic move. For example:
+Add multiple code blocks and wrap them with <code>````md magic-move</code> (four backticks) to enable the
+magic move. For example:
 
 ````md magic-move {lines: true}
 ```ts {*|2|*}
@@ -268,7 +272,8 @@ const author = {
 
 You can use Vue components directly inside your slides.
 
-We have provided a few built-in components like `<Tweet/>`, `<BlueSky/>`, and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
+We have provided a few built-in components like `<Tweet/>`, `<BlueSky/>`, and `<Youtube/>` that you can use
+directly. And adding your custom components is also super easy.
 
 ```html
 <Counter :count="10" />
@@ -307,7 +312,8 @@ class: px-20
 
 # Themes
 
-Slidev comes with powerful theming support. Themes can provide styles, layouts, components, or even configurations for tools. Switching between themes by just **one edit** in your frontmatter:
+Slidev comes with powerful theming support. Themes can provide styles, layouts, components, or even
+configurations for tools. Switching between themes by just **one edit** in your frontmatter:
 
 <div grid="~ cols-2 gap-2" m="t-2">
 
@@ -323,9 +329,11 @@ theme: seriph
 ---
 ```
 
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true" alt="">
+<img border="rounded"
+     src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true" alt="">
 
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true" alt="">
+<img border="rounded"
+     src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true" alt="">
 
 </div>
 
@@ -572,7 +580,8 @@ database "MySql" {
 
 </div>
 
-Learn more: [Mermaid Diagrams](https://sli.dev/features/mermaid) and [PlantUML Diagrams](https://sli.dev/features/plantuml)
+Learn more: [Mermaid Diagrams](https://sli.dev/features/mermaid) and
+[PlantUML Diagrams](https://sli.dev/features/plantuml)
 
 ---
 foo: bar
@@ -657,6 +666,7 @@ class: text-center
 
 # Learn More
 
-[Documentation](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/resources/showcases)
+[Documentation](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) ·
+[Showcases](https://sli.dev/resources/showcases)
 
 <PoweredBySlidev mt-10 />

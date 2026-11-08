@@ -8,8 +8,10 @@ choice, branding approach, and canvas aspect ratio are still pending decisions
 
 ## Files
 
-- [reveal-source-repo.md](reveal-source-repo.md) — architecture, deck inventory, branding, and invariants of the source repo.
-- [feature-mapping.md](feature-mapping.md) — Reveal.js concept → Slidev equivalent, with concrete before/after examples.
+- [reveal-source-repo.md](reveal-source-repo.md) — architecture, deck inventory, branding, and invariants
+  of the source repo.
+- [feature-mapping.md](feature-mapping.md) — Reveal.js concept → Slidev equivalent, with concrete
+  before/after examples.
 
 ## Source material
 
