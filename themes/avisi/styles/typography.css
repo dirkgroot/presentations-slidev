@@ -6,7 +6,6 @@
   /* Reveal-parity two-axis centering; `safe` pins overflowing slides to the top */
   display: flex;
   flex-direction: column;
-  justify-content: center;
   justify-content: safe center;
   text-align: center;
 
@@ -37,12 +36,15 @@
   h1 {
     font-size: calc(2.5em * var(--avisi-font-scale));
   }
+
   h2 {
     font-size: calc(1.6em * var(--avisi-font-scale));
   }
+
   h3 {
     font-size: calc(1.3em * var(--avisi-font-scale));
   }
+
   h4 {
     font-size: calc(1em * var(--avisi-font-scale));
   }
@@ -56,6 +58,7 @@
   li::marker {
     color: var(--avisi-color-light-blue);
   }
+
   li {
     /* layouts-base flattens li to 1.8em; padding ≈ source's 20px-at-40px as 0.5em */
     line-height: inherit;
@@ -68,12 +71,15 @@
   }
 
   /* Reveal theme-template parity: lists shrink-wrap and center as a block */
+
   ul {
     list-style-type: disc;
   }
+
   ul ul {
     list-style-type: square;
   }
+
   ul ul ul {
     list-style-type: circle;
   }
@@ -95,8 +101,25 @@
     margin-left: 20px;
   }
 
+  table {
+    width: fit-content;
+  }
+
+  & > table {
+    margin-inline: auto;
+  }
+
   tr {
     border-bottom: none;
+  }
+
+  th,
+  td {
+    text-align: left;
+  }
+
+  th {
+    font-weight: 600;
   }
 
   .emphasis {
@@ -120,7 +143,6 @@
     flex-direction: row;
     flex-wrap: wrap;
     align-items: flex-start;
-    align-content: center;
     align-content: safe center;
     justify-content: flex-start;
 

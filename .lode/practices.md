@@ -108,6 +108,10 @@
 - Slidev on GitHub Pages requires the path prefix at build time: `slidev build <deck> --base /<repo>/<deck>/`;
   user-site repos (`<user>.github.io`) would use `--base /<deck>/` instead.
 - **The user manages git themselves** (init, remote, push) — do not run `git init`/commit/push unprompted.
+- **Commit style**: short sentence-case imperative subjects, **not** conventional commits —
+  "Make the avisi light backgrounds translucent…", not `feat(avisi-theme): …`. (Plain bodies explain
+  rationale when useful. The lone `fix(avisi-theme):` commit `002dcad` is a historical outlier —
+  never match it.)
 
 ### Theme authoring (local themes)
 

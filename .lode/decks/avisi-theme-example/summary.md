@@ -22,7 +22,7 @@ so no `layout: default` forcing is needed (removed in the 2026-11-08 restructure
 | 1 | Cover (logo + title) | headmatter: `layout: cover`, `class: avisi-fancy` | `cover` layout, fancy bg, deck-owned white wordmark logo, `.emphasis` title |
 | 2 | Typography ladder | `class: avisi-white-with-footer` | h1→h4 sizes at 2.5/1.6/1.3/1.0em × `--avisi-font-scale`, Poppins |
 | 3 | Subtitle contrast | `class: avisi-white-with-footer` | `## … {.avisi-subtitle}` (bold dark gray) vs. unclassed `h2` (dark blue) |
-| 4 | Lists, links & tables | `class: avisi-white-with-footer` | light-blue links (no underline) + `li::marker`, dark-gray body, borderless table |
+| 4 | Lists, links & tables | `class: avisi-white-with-footer` | light-blue links (no underline) + `li::marker`, dark-gray body, borderless table — concise-but-nontrivial three-row table exercising left-aligned cells and the shrink-wrapped (content-minimum) table width |
 | 5 | Code | `class: avisi-white-with-footer` | fenced `ts` block, Shiki `dark-plus` via the theme's `setup/shiki.ts`, 0.65em `pre` |
 | 6 | Dark background | `class: avisi-fancy-with-footer` | white text by default (zero inline styles), footer logo on dark |
 | 7 | Split | `layout: two-cols`, `layoutClass: avisi-half-gray gap-8` | `two-cols` + half-gray split via `layoutClass`, `gap-8` column gap |

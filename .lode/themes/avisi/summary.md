@@ -155,7 +155,12 @@ names; `--avisi-footer-height` derives from them).
 Typography: headings bold Poppins `#003345`, h1–h4 at 2.5/1.6/1.3/1.0 em × scale; `.emphasis` colors the
 signature light-blue punctuation; subtitles (an `h2` carrying `.avisi-subtitle`) use the source's
 `.subtitle` h2 look (bold, `1.6em × scale`, dark gray) — see the invariants below; borderless tables
-(source `table td { border-bottom: none }`). Pixel values from the 1920px source canvas were halved
+(source `table td { border-bottom: none }`) with **left-aligned `th` and `td`** (`text-align: left` on
+`.slidev-layout th, td` — Slidev's base pins `th` to `text-left` while `td` would otherwise inherit the
+layout's centered alignment, producing a left/center split), **bold headers** (`font-weight: 600` —
+the headings' weight; the base's `th` rule carries `font-400`) that **shrink-wrap to content width**
+(`width: fit-content` overrides the base's `w-full`; direct-child tables center as a block via
+`margin-inline: auto`, same pattern as the lists). Pixel values from the 1920px source canvas were halved
 for Slidev's 980px canvas (footer padding 15px → 8px).
 
 Line spacing (Reveal.js parity, added 2026-11-08): the source runs `line-height: 1.3` on the whole

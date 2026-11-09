@@ -44,10 +44,11 @@ class: avisi-white-with-footer
 - Links are plain light-blue text, no underline: [avisi.nl](https://avisi.nl)
 - Bullet markers match the link color; body text is dark gray `#595959`
 
-| Column A | Column B |
-|----------|----------|
-| no row   | borders  |
-| retained | here     |
+| Feature                 | Behavior                                                                               |
+|-------------------------|----------------------------------------------------------------------------------------|
+| Text alignment in cells | Both left-aligned                                                                      |
+| Horizontal table width  | Shrink-wrapped to the content's minimum required width |
+| Row borders             | None         |
 
 ---
 class: avisi-white-with-footer
@@ -57,9 +58,9 @@ class: avisi-white-with-footer
 
 ```ts
 export function greet(name: string): string {
-    const message = `Hello, ${name}!`
-    console.log(message)
-    return message
+  const message = `Hello, ${name}!`
+  console.log(message)
+  return message
 }
 ```
 
