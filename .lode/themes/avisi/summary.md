@@ -66,10 +66,11 @@ of [dirkgroot/presentations](../migration/reveal-source-repo.md). Follows the Sl
 - `components/QrCode.vue` — theme-provided component (added 2026-11-08, first used by
   `decks/fp-oop-bffs/`): ~10-line SFC on **`uqr`** (zero-dep QR lib by antfu, theme dependency,
   hoisted via `shamefullyHoist`) rendering `renderSVG()` through `v-html`. Props: `value` (required),
-  `size` (default 150), `color` — default resolves via `fill="currentColor"` +
-  `.avisi-qr { color: var(--avisi-color-dark-blue) }` (CSS vars work in CSS, not in SVG presentation
-  attributes). Crisp SVG at any export resolution; white background rect from uqr gives the quiet
-  zone. **Decided 2026-11-08: theme components are our cross-deck component mechanism** — themes may
+  `size` (default 150) — the color is fixed via `blackColor: 'currentColor'` in the render options,
+  so the QR inherits `.avisi-qr { color: var(--avisi-color-dark-blue) }` (CSS vars work in CSS, not
+  in SVG presentation attributes). Crisp SVG at any export resolution; white background rect from
+  uqr gives the quiet zone. **Decided 2026-11-08: theme components are our cross-deck component
+  mechanism** — themes may
   "provide custom components" (official docs), every deck already consumes the theme, so no addon
   packaging or per-deck copies. If a component is ever needed *without* the Avisi theme, promote it
   to a local `slidev-addon-*` package instead.

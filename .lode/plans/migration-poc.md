@@ -13,17 +13,17 @@ Proof-of-concept migration of the Avisi branding and one deck from
 2. **Canvas** — **16:9** (Slidev default). Source slide layouts get reflowed when migrated.
 3. **Demo-first** — the POC began with the theme + an `example.md` playground rather
    than migrating a whole deck first (the playground has since moved to
-   `decks/avisi-theme-example/`). Which **real deck** migrates first is still open
-   (candidates from the earlier POC question: GettingBetterAgainstAllOdds recommended, AoC2025,
-   FpOopBestFriendsForever, DesigningWithTypesKotlin).
+   `decks/avisi-theme-example/`). The first **real deck** to migrate was decided 2026-11-08:
+   **FpOopBestFriendsForever** → `decks/fp-oop-bffs/` (the lightest candidate); remaining decks
+   copy its patterns.
 
 ## Status
 
 - [x] Avisi branding recreated as `themes/avisi/` (fonts, colors, backgrounds, layouts, code styles).
-- [x] Playground demo (now `decks/avisi-theme-example/slides.md`) — 8 slides, verified via PDF export screenshots.
+- [x] Playground demo (now `decks/avisi-theme-example/slides.md`) — 7 slides, verified via PDF export screenshots.
 - [x] Shared slides ported to `shared/slides/` with cross-deck `src:` imports (decided 2026-11-08;
-  see [../shared/summary.md](../shared/summary.md)); the playground deck imports them as the live demo.
-- [ ] First real deck migrated to `decks/<name>/` → **done 2026-11-08: `decks/fp-oop-bffs/`**
+  see [../shared/summary.md](../shared/summary.md)); live consumer is `decks/fp-oop-bffs/`.
+- [x] First real deck migrated to `decks/<name>/` → done 2026-11-08: `decks/fp-oop-bffs/`
       (FpOopBestFriendsForever, the lightest candidate). Decisions taken during the migration:
       word emphasis = HTML spans; ± lists = markdown + slide-scoped styles; "Goals:" h3 promoted to
       h2 subtitle; QR codes live-rendered via the new theme component `QrCode` (uqr-based) instead
@@ -33,15 +33,17 @@ Proof-of-concept migration of the Avisi branding and one deck from
   playground deck runs on it (dev-server verified 2026-11-08).
 - [ ] Optional: ir-black Shiki theme port; dark/colored logo variants; out-of-sandbox CI export.
 
-## Next steps (real deck migration)
+## Remaining steps (decks after fp-oop-bffs)
 
-1. Create `decks/<name>/` (copy the shape of `decks/avisi-theme-example/`), set
-   `theme: ../../themes/avisi`, verify locally path resolution works from the decks location.
+1. Create `decks/<name>/` (copy the shape of `decks/fp-oop-bffs/`), set `theme: ../../themes/avisi`,
+   and open with the shared slides via `src:` imports (avisi-logo / whoami / about-avisi) — do not
+   re-port openers/intro slides per deck.
 2. Port slides to markdown per [../migration/feature-mapping.md](../migration/feature-mapping.md);
-   copy deck-specific assets (diagrams, QR PNGs) into the deck's `public/`. Openers/intro slides
-   come from `shared/slides/` via `src:` imports — do not re-port them per deck.
-3. Dark-background slides: manual `style="color: white"` per the theme convention.
-4. Verify: `pnpm exec slidev export decks/<name>/slides.md` and rasterize (see
+   copy deck-specific assets (diagrams, QR images → theme `QrCode` where possible) into the deck's
+   `public/`.
+3. Dark-background slides need no styling: the theme's dark `avisi-fancy*` classes default to white
+   text (see [../themes/avisi/summary.md](../themes/avisi/summary.md)).
+4. Verify: `pnpm exec slidev export decks/<name>/slides.md --per-slide` and rasterize (see
    [../practices.md](../practices.md) → Verification); check fragments/clicks in the dev server.
-5. When trusted: migrate remaining decks; revisit GitHub Pages workflow site-layout decision
+5. When trusted: revisit GitHub Pages workflow site-layout decision
    ([../practices.md](../practices.md) → Deployment).

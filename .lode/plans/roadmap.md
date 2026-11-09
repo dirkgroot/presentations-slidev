@@ -4,7 +4,7 @@
 
 - **Multi-deck repo** — this repository holds *several* presentations, not a single deck (decided 2026-11-07).
 - **Directory per deck** — every deck is self-contained under `decks/<name>/` with its own `slides.md`,
-  `pages/`, `components/`, `snippets/`; commands take the deck path (`npm run build -- decks/<name>`)
+  `pages/`, `components/`, `snippets/`; commands take the deck path (`pnpm build decks/<name>`)
   (decided 2026-11-07).
 - **Starter deck removed** — the stock Slidev starter showcase `decks/welcome-to-slidev/` was deleted
   (decided 2026-11-08); its feature demos live on in `decks/avisi-theme-example/`.
@@ -19,5 +19,3 @@
 
 - **Pages site layout** — one shared site with per-deck `--base` path prefixes vs. one site per deck. Blocks
   creation of the deploy workflow.
-- Verify the migrated deck builds/exports on the dev machine (the Linux sandbox couldn't: rolldown native
-  binding is macOS-only in the current `node_modules`).

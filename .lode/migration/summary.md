@@ -2,9 +2,9 @@
 
 Goal of the current effort: migrate the author's existing presentations from
 [dirkgroot/presentations](https://github.com/dirkgroot/presentations) (React + Reveal.js 5) into this
-workspace as Slidev decks under `decks/<name>/`. Started 2026-11-08 as a **proof-of-concept** — deck
-choice, branding approach, and canvas aspect ratio are still pending decisions
-(see [../plans/migration-poc.md](../plans/migration-poc.md)).
+workspace as Slidev decks under `decks/<name>/`. Started 2026-11-08 as a **proof-of-concept** since resolved:
+Avisi branding is a local custom theme, the canvas is 16:9, and the first real deck
+(`decks/fp-oop-bffs/`) is migrated — see [../plans/migration-poc.md](../plans/migration-poc.md).
 
 ## Files
 

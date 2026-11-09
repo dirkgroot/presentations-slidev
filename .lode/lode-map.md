@@ -10,6 +10,8 @@ Hierarchical index of the lode. Keep this file accurate when adding/moving files
   name from the lode):
   - **Project skill `dev-server`** (`.agents/skills/dev-server/`) — start/verify/stop the Slidev dev
     server, incl. headless `--remote` mode + sbx port publishing for host-browser preview.
+- **Vendored skill `slidev`** (`.agents/skills/slidev/`) — the official Slidev authoring skill,
+  pinned by `skills-lock.json` (source slidevjs/slidev); lock-managed, not ours to edit.
 - **slides/** → replaced by per-deck lode dirs mirroring the repo:
 - **decks/avisi-theme-example/summary.md** — the Avisi theme playground deck: purpose, anatomy,
   theme-consumption path, deck-owned public assets.

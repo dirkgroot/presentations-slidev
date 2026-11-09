@@ -7,7 +7,8 @@
   `snippets/` (code embedded via `<<< @/snippets/...` or `{monaco-run}` imports). Deck-internal
   `src:` / `@/` references resolve *within the deck directory*, so a deck can be moved or copied as a
   unit; the sanctioned exceptions that reach outside are headmatter `theme:` and imports of
-  [shared/slides/](shared/summary.md) (below).
+  [shared/slides/](shared/summary.md) (below). Runtime note: running slidev against a deck creates a
+  git-ignored `node_modules/.slidev/` (Vite cache) inside the deck dir — not part of the deck's source.
 - Adding a new deck = create `decks/<name>/` (copy the shape of an existing deck) and run commands
   against that path. No global registration needed.
 
@@ -31,7 +32,7 @@
   **pnpm `12.18.0`** (standalone binary, no node needed for pnpm itself). The stale root `package-lock.json`
   was **deleted** (2026-11-08, before the initial commit) — installs are pnpm-only.
 - **Installs are pnpm-based** (decided 2026-11-07): `pnpm-lock.yaml` exists, `node_modules` is pnpm layout, and
-  re-install after any git/material reset. - Root `package-lock.json` previously duplicated installs as
+  re-install after any git/material reset. The root `package-lock.json` previously duplicated installs as
   npm-style lock (removed; see Toolchain). pnpm keeps its content-addressable store in-repo
   (`node_modules/.pnpm-store/v11`); `pnpm-workspace.yaml` sets `shamefullyHoist: true` and allowlists the
   `playwright-chromium` build script (pnpm v11+ blocks unapproved postinstall scripts; `@slidev/cli` also
@@ -52,8 +53,8 @@
     new/renamed layout, component, or config files, AND headmatter parser flags (`comark: true`, …) —
     anything computed at startup; restart the server. Verified empirically 2026-11-08: a new theme
     layout and the comark flag both required a restart, while markdown text and theme-CSS edits hot-reload.
-  - build: `npm run build -- decks/<name>` → static SPA in `dist/`.
-  - export: `npm run export -- decks/<name>` → PDF/PNG/PPTX (requires the playwright-chromium browser download).
+  - build: `pnpm build decks/<name>` → static SPA in `dist/`.
+  - export: `pnpm export decks/<name>` → PDF/PNG/PPTX (requires the playwright-chromium browser download).
 - Conventional path note: `slidev build <entry> --out <rel-path>` resolves the out-dir **relative to the
   entry's directory**, not the repo root — pass an absolute `--out` when scripting from the root.
 - Playwright export needs system chromium libraries; in this dev sandbox they were apt-installed 2026-11-08
@@ -116,7 +117,7 @@
 ### Theme authoring (local themes)
 
 - The Avisi branding lives in the local theme `themes/avisi/` (package `slidev-theme-avisi`), consumed
-  via headmatter `theme: ./themes/avisi` (path relative to the deck entry file). Conventions follow the
+  via headmatter `theme: ../../themes/avisi` (path relative to the deck entry file). Conventions follow the
   official theme standard: package name `slidev-theme-*`, keywords `slidev-theme|slidev`, plain `.vue`/
   `.ts` (Slidev compiles them), `slidev.defaults` in `package.json` for deck-level defaults (fonts,
   colorSchema) merged under user frontmatter, `--slidev-theme-*` CSS vars as the `themeConfig` surface.

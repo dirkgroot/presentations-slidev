@@ -29,8 +29,9 @@ maps to Slidev, with concrete before (JSX) / after (markdown) examples. Related:
 > fonts via `slidev.defaults` (Poppins/Fira Code, weights 400/600), palette in `styles/tokens.css`,
 > `.emphasis` in `styles/typography.css`, highlighter `dark-plus` (ir-black port pending), the four
 > background classes `avisi-fancy` / `avisi-fancy-with-footer` / `avisi-white-with-footer` /
-> `avisi-half-gray` in `styles/backgrounds.css`. On dark backgrounds text is colored white
-> manually (`style="color: white"`), as the source decks did.
+> `avisi-half-gray` in `styles/backgrounds.css`. On dark backgrounds text defaults to white via
+> the theme (no per-element styles — a deliberate divergence from the source decks, which styled
+> every element manually).
 
 ## Example: fragments
 

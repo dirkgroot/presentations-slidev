@@ -1,6 +1,7 @@
 shamefullyHoist: true
 
-# Local Slidev themes (consumed via `theme: ./themes/<name>` local paths).
+# Local Slidev themes (consumed via `theme: ../../themes/<name>` — relative to the deck entry file).
+# The workspace membership makes Vite resolve the theme package and hoists its deps (e.g. uqr).
 packages:
   - themes/avisi
 

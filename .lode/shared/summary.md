@@ -96,7 +96,7 @@ flowchart LR
   slide's frontmatter (a shared file is never a deck entry, so it has no headmatter of its own).
 - Shared slides carry their finished look — layout + background class + styling baked in; a deck
   adds nothing but the `src:` separator.
-- Verified 2026-11-08 (slidev 53.1.0, deck `decks/avisi-theme-example/` as consumer): dev server
+- Verified 2026-11-08 (slidev 53.1.0, deck `decks/fp-oop-bffs/` as consumer): dev server
   DOM probe (layout classes, emphasis `#1199bb`, image natural sizes), PDF export visual check
   (centering, bullets, footer logo), and production build (hashed `avisi_logo-*.png` /
   `avisi_photo-*.png` load in the static SPA).

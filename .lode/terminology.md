@@ -30,7 +30,7 @@ Domain language of this project (Slidev terms + project-specific meanings).
 - **Drawings** - Built-in pen/pointer overlay; `drawings.persist` in global frontmatter controls whether
   drawings survive reload.
 - **Comark** - Extended markdown syntax enabled by `comark: true` in global frontmatter.
-- **SPA export** - `slidev build` produces a static hostable app in `dist/` (what Netlify/Vercel publish).
+- **SPA export** - `slidev build` produces a static hostable app in `dist/` (published to GitHub Pages).
 - **Reveal.js** - HTML/JS slide framework used by the author's source decks; embedded as a React component in
   [dirkgroot/presentations](https://github.com/dirkgroot/presentations) (see `.lode/migration/`).
 - **Section / Fragment** - Reveal.js terms: a `<section>` is one slide; a `fragment` is a step revealed on
