@@ -4,9 +4,9 @@
   --avisi-color-dark-gray: #595959;
   --slidev-theme-primary: var(--avisi-color-light-blue);
 
-  --avisi-slide-background-transparency: 0.75;
+  --avisi-slide-background-transparency: 0.8;
   --avisi-slide-background-white: rgba(248, 248, 248, var(--avisi-slide-background-transparency));
-  --avisi-slide-background-gray: rgb(238, 238, 238, var(--avisi-slide-background-transparency));
+  --avisi-slide-background-gray: rgba(230, 230, 230, var(--avisi-slide-background-transparency));
 
   --avisi-font-scale: 0.95;
 

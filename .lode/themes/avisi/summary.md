@@ -143,12 +143,12 @@ so framework surfaces always follow the Avisi accent; deck `themeConfig` overrid
 | `--avisi-color-light-blue` | `#1199bb` | links, `li::marker`, `.emphasis`, primary |
 | `--avisi-color-dark-gray` | `#595959` | body text |
 | `--avisi-slide-background-white` | `rgba(248,248,248, α)` | white slide/gradient base |
-| `--avisi-slide-background-gray` | `rgb(238,238,238, α)` | right-half-gray background |
-| `--avisi-slide-background-transparency` | `0.75` | shared α of both slide-background colors |
+| `--avisi-slide-background-gray` | `rgba(230,230,230, α)` | right-half-gray background |
+| `--avisi-slide-background-transparency` | `0.8` | shared α of both slide-background colors |
 | `--avisi-font-scale` | `0.95` | multiplies all ported sizes |
 
 The two `--avisi-slide-background-*` colors are **translucent** (one knob, `--avisi-slide-background-transparency`)
-so light slides let the fancy `background.png` texture read through at 25%; tuning α retunes both
+so light slides let the fancy `background.png` texture read through at 20%; tuning α retunes both
 light classes at once. Footer logo geometry tokens are `--avisi-footer-logo-height/margin` (footer-scoped
 names; `--avisi-footer-height` derives from them).
 
@@ -187,7 +187,7 @@ instead of the root); there, bind the background to the root via `layoutClass:` 
 | `avisi-white-with-footer` | `WhiteWithFooter` (translucent white above the footer strip) |
 | `avisi-half-gray` | `RightHalfGrayWithFooter` (right half translucent gray) |
 
-The two light classes paint their 75%-α fills **over** `background.png` (photo texture reads through
+The two light classes paint their 80%-α fills **over** `background.png` (photo texture reads through
 subtly); only the footer strip is fully transparent, showing the photo at full strength.
 `avisi-half-gray` layers exactly two things over the photo — the 50/50 white/gray split gradient
 (top region only, above the footer strip) and the footer logo.

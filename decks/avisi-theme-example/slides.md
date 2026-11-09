@@ -88,5 +88,5 @@ layoutClass: avisi-half-gray gap-8
 
 ::right::
 
-- Right half on light gray `#eee`
+- Right half on light gray `#e6e6e6`
 - Split painted at exactly 50% slide width
