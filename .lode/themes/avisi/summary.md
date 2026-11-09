@@ -21,7 +21,8 @@ of [dirkgroot/presentations](../migration/reveal-source-repo.md). Follows the Sl
 - `styles/index.ts` — style entry; first imports `@slidev/client/styles/layouts-base.css` (inherit-then-
   extend pattern from the official `create-theme` template), then the css below.
 - `styles/tokens.css` — design tokens: CSS custom properties on `:root` (Avisi palette, the
-  `--slidev-theme-primary` knob, footer logo geometry, `--avisi-font-scale`).
+  `--slidev-theme-primary` knob, the translucent slide-background color pair with their shared
+  transparency knob, footer logo geometry, `--avisi-font-scale`).
 - `styles/typography.css` — global typography, all nested under `.slidev-layout` so styles never
   leak into the presenter UI: body font/color, heading sizes/weights, links, list markers,
   borderless tables, `.emphasis` accent, the `.cover`/`.default` `.title` sizing and
@@ -138,12 +139,18 @@ so framework surfaces always follow the Avisi accent; deck `themeConfig` overrid
 
 | token | value | use |
 |---|---|---|
-| `--avisi-color-background` | `#f8f8f8` | slide/gradient base |
 | `--avisi-color-dark-blue` | `#003345` | headings |
 | `--avisi-color-light-blue` | `#1199bb` | links, `li::marker`, `.emphasis`, primary |
 | `--avisi-color-dark-gray` | `#595959` | body text |
-| `--avisi-color-light-gray` | `#eee` | right-half-gray background |
+| `--avisi-slide-background-white` | `rgba(248,248,248, α)` | white slide/gradient base |
+| `--avisi-slide-background-gray` | `rgb(238,238,238, α)` | right-half-gray background |
+| `--avisi-slide-background-transparency` | `0.75` | shared α of both slide-background colors |
 | `--avisi-font-scale` | `0.95` | multiplies all ported sizes |
+
+The two `--avisi-slide-background-*` colors are **translucent** (one knob, `--avisi-slide-background-transparency`)
+so light slides let the fancy `background.png` texture read through at 25%; tuning α retunes both
+light classes at once. Footer logo geometry tokens are `--avisi-footer-logo-height/margin` (footer-scoped
+names; `--avisi-footer-height` derives from them).
 
 Typography: headings bold Poppins `#003345`, h1–h4 at 2.5/1.6/1.3/1.0 em × scale; `.emphasis` colors the
 signature light-blue punctuation; subtitles (an `h2` carrying `.avisi-subtitle`) use the source's
@@ -172,8 +179,13 @@ instead of the root); there, bind the background to the root via `layoutClass:` 
 |---|---|
 | `avisi-fancy` | `FancyBackground` (background.png, cover) |
 | `avisi-fancy-with-footer` | `FancyWithFooter` |
-| `avisi-white-with-footer` | `WhiteWithFooter` (opaque above the footer strip) |
-| `avisi-half-gray` | `RightHalfGrayWithFooter` (right half `#eee`) |
+| `avisi-white-with-footer` | `WhiteWithFooter` (translucent white above the footer strip) |
+| `avisi-half-gray` | `RightHalfGrayWithFooter` (right half translucent gray) |
+
+The two light classes paint their 75%-α fills **over** `background.png` (photo texture reads through
+subtly); only the footer strip is fully transparent, showing the photo at full strength.
+`avisi-half-gray` layers exactly two things over the photo — the 50/50 white/gray split gradient
+(top region only, above the footer strip) and the footer logo.
 
 The two `avisi-fancy*` classes are dark and default to **white text** — see the invariant below.
 
